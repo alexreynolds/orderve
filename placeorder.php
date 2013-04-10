@@ -148,7 +148,24 @@ $con = mysql_connect($servername,$username,$password);
 	
 ?>
 
-<a href="index.php?seat=THRONE">Return Home</a><br /><br />
+<div id="content" align="center">
+
+<?php echo $_POST['time']; ?><br /><br />
+
+<h1>Thanks for your order!</h1> <br /><br />
+
+Cheers for your service <?php echo $_POST['titles'] ?>  <?php echo $_POST['lastname'] ?> !<br />
+
+You should recieve a confirmation email shortly,<br />
+and your order soon after that.<br /><br />
+
+Provided, you know, the world doesn't end or anything anytime soon.<br /><br />
+
+<br /><br />
+
+<a href="index.php?seat=<?php echo $_SESSION['seat'] ?>">Return Home</a><br /><br />
+
+</div>
 
 </body>
 </html>

@@ -184,7 +184,7 @@ $con = mysql_connect($servername,$username,$password);
 <td>Your name, perhaps?:</td>
 <td>
 <div id="select">
-<select name="titles" id="titles" onchange="getTitle()">
+<select name="titles" id="titles" onChange="getTitle()">
 <option value="Mr.">Mr.</option>
 <option value="Mrs.">Mrs.</option>
 <option value="Ms.">Ms.</option>
@@ -213,7 +213,6 @@ $con = mysql_connect($servername,$username,$password);
 <input type="hidden" name="time" id="timestamp"/>
 <input type="hidden" name="foodarray" value="<?php echo $_SESSION['foodArray'] ?>" />
 <input type="hidden" name="quanarray" value="<?php echo $_SESSION['quanArray'] ?>" />
-<input type="hidden" name="title" id="title" value="getTitle()" />
 </form>
 
 </div>
@@ -225,8 +224,9 @@ $con = mysql_connect($servername,$username,$password);
 // Gets the chosen title from the drop down list
 function getTitle()
 {
-    var titles = document.getElementById("title");
-	document.getElementById("title").value=titles.options[titles.selectedIndex].value;
+    var titles = document.getElementById("titles");
+	document.getElementById("titles").value=titles.options[titles.selectedIndex].value;
+	return document.getElementById("titles").value;
 }
 
 // A script to clear values from the input boxes upon focus
