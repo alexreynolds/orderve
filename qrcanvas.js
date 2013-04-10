@@ -73,7 +73,6 @@ function drawqr(typeNumber,id,text,level,style,colordark) {
 		// Puts canvas in the given div
 		e.appendChild(canvas);
 
-// I HATE GITHUB
 
 
 		if (canvas.getContext){

@@ -62,6 +62,21 @@ img {
 
 <body>
 
+  <!-- Makes the page private. Only registered admins have access. -->
+<?php 
+
+    // Connects to database, begins session 
+    require("common.php"); 
+     
+    // Checks to see if user has logged in
+    if(empty($_SESSION['user'])) 
+    { 
+        // If not, redirect to login page
+        header("Location: login.php");
+        die("Redirecting to login.php"); 
+    } 
+?> 
+
 <div id="main" align="center">
 
 <br /><br />
@@ -148,6 +163,7 @@ Time:<input type="datetime" name="time"  /><br />
 $servername = "localhost";
 $username = "user";
 $password = "wachtwoord";
+$db = "my_db";
 
 $con = mysql_connect($servername,$username,$password);
 if (!$con)
@@ -155,7 +171,7 @@ if (!$con)
   die('Could not connect: ' . mysql_error());
   }
 
-mysql_select_db("my_db", $con);
+mysql_select_db($db, $con);
 
 // PRINT OUT FOODS TABLE //
 

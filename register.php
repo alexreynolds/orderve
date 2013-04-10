@@ -20,6 +20,12 @@
             die("You didn't enter a password..."); 
         } 
          
+        // Make sure password was correctly verified
+        if($_POST['password'] != $_POST['password2'])
+        {
+            die("Passwords entered do not match.");
+        }
+
         // Make sure the user entered a valid email
         if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) 
         { 
@@ -85,7 +91,7 @@
         // Inserts the new user into admins database
         // Tokens (ex :username) used to protect against SQL injection attacks
         $query = " 
-            INSERT INTO users ( 
+            INSERT INTO admins ( 
                 username, 
                 password, 
                 salt, 
@@ -130,7 +136,7 @@
         } 
         catch(PDOException $ex) 
         { 
-            die("Failed to run query to create new user"); 
+            die("Failed to run query to create new user:" . $ex->getMessage()); 
         } 
          
         // Redirects back to login page after registration

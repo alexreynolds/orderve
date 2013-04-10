@@ -74,84 +74,31 @@ td {
 
 </style>
 
-
-<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
-<script type="text/javascript" charset="utf-8">
-
-// Cordova is used for obtaining mobile device information
-// Gets the device name and platform and UUID (universally unique identifer)
-var devicename;
-var deviceplatform;
-var deviceuuid;
-var deviceversion;
-var devicecordova;
-
-function onDeviceReady()
-{	
-	devicename = device.name;
-	deviceplatform = device.platform;
-	deviceuuid = device.uuid;
-	deviceversion = device.version;
-	devicecordova = device.cordova;
-	
-	// String to display info
-	var devinfostring = "Name: " + devicename + "\nPlatform: " + deviceplatform + "\nUUID: "
-						+ deviceuuid + "\nVersion: " + deviceversion + "\nCordova Version: " + devicecordova;
-}
-
-// Wait for Cordova to load
-document.addEventListener("deviceready", onDeviceReady, false);
-
-// Cordova is ready
-onDeviceReady(); 
-
-</script>
+<body>
 
 <!-- Creates the relevant tables in the database if they have not already been created -->
-<? php include 'tablecreation.php' ?>
+<?php include 'tablecreation.php' ?>
 
 
-
-<script>
-function seatz() {
-var place = <?php echo $_GET["seat"]; ?>;
-
-alert(place);
-}
-</script>
-
-<body onload="seatz();">
+<!-- Checks to see if location information exists, otherwise, prompt and redirect -->
+<?php
+	if (empty($_GET['seat']))
+	{
+		$_SESSION['seat'] = "unknown";
+		
+	}
+	else
+	{
+		// Takes note of the user's location for the rest of the session
+		$_SESSION['seat'] = $_GET['seat'];
+	}
+?>
 
 <!-- Page content -->
 <div id="content" align="left" style="text-align:center">
 
 <!-- Displays the Orderve logo-->
 <a href="controls.php"><img src="logoopaque.png" class="logo" alt="orderve"></a><br />
-
-<script>
-
-var seat = prompt("Please enter your location.", "Room 123");
-alert("Hello person at " + seat);
-
-// If seat/location parameter is empty, prompt the user to input location information
-
-
-
-// Prompts the user to input their location
-function seatInfo()
-{
-	var seat = prompt("Hmm, you don't seem to have any location information. Where are you right now?","ex. Room 12");
-	
-	// If answer is valid, set it as official location
-	if (seat != null or seat != "")
-	{
-		<?php $_GET["seat"]; ?> = seat;
-	}
-	
-}
-
-</script>
-
 
 
 <!-- Automatically generate menu table of food options -->
@@ -160,6 +107,7 @@ function seatInfo()
 	$servername = "localhost";
 	$username = "user";
 	$password = "wachtwoord";
+	$db = "my_db";
 
 	$con = mysql_connect($servername, $username, $password);
 
@@ -169,7 +117,7 @@ function seatInfo()
   	die('Could not connect: ' . mysql_error());
   	}
 	
-	mysql_select_db("my_db", $con);
+	mysql_select_db($db, $con);
 	
 	
 	// Begins menu table (white rounded rectangle background)
@@ -223,7 +171,7 @@ function seatInfo()
 		// Hidden food name value
 		echo "<input type=\"hidden\" name=\"foodtype\" value=\"" . $row['FoodName'] . "\" />";
 		// Hidden seat location information
-		echo "<input type=\"hidden\" name=\"seat\" value=\"" . $_GET["seat"] . "\"/>";
+		echo "<input type=\"hidden\" name=\"seat\" value=\"" . $_SESSION['seat'] . "\"/>";
 		// Hidden price information
 		echo "<input type=\"hidden\" name=\"price\" value=\"" . $row['FoodPrice'] . "\"/>";
 		// End div
@@ -280,7 +228,7 @@ function seatInfo()
 		// Hidden food name value
 		echo "<input type=\"hidden\" name=\"foodtype\" value=\"" . $row['FoodName'] . "\" />";
 		// Hidden seat location information
-		echo "<input type=\"hidden\" name=\"seat\" value=\"" . $_GET["seat"] . "\"/>";
+		echo "<input type=\"hidden\" name=\"seat\" value=\"" . $_SESSION['seat'] . "\"/>";
 		// Hidden price information
 		echo "<input type=\"hidden\" name=\"price\" value=\"" . $row['FoodPrice'] . "\"/>";
 		// End div
@@ -288,8 +236,6 @@ function seatInfo()
 		// End table cell and row
 		echo "</td><tr>";
 		
-		// increment cell counter
-		//$i++;
 	}
 	
 	// Close off main courses table
@@ -301,13 +247,8 @@ function seatInfo()
 	echo "</form><br /><br />";
 
 
-
-
 	// Close off menu table
 	echo "</table>";
-
-
-
 
 	?>
     
@@ -320,28 +261,6 @@ function seatInfo()
     
     
     <script>
-
-    /*
-    // Gets width of food options table to set a static menu table width
-	var width = document.getElementById(foodoptions).offsetWidth);
-	
-	alert("GOTHERE");
-
-	document.getElementById(menu).style.width = width;
-	*/
-	
-	// Script for order confirmation window
-	function youSure()
-	{
-		var c=confirm("Are you sure you're ready to order?");
-		// If yes
-		if (c) {
-			document.forms["orderform"].submit();
-		}
-		else {
-		}
-		
-	}
 
 	// Toggles the display of an element (for dropdown menus)
 	function toggleDisplay(id,btn)
