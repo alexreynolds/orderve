@@ -111,23 +111,6 @@
     <input type="submit" value="Login" /> 
 </form> 
 
-<h1>Add a New Admin</h1> 
-<form action="register.php" method="post"> 
-    Username:<br /> 
-    <input type="text" name="username" value="" /> 
-    <br /><br /> 
-    E-Mail:<br /> 
-    <input type="text" name="email" value="" /> 
-    <br /><br /> 
-    Password:<br /> 
-    <input type="password" name="password" value="" /> 
-    <br /><br /> 
-    Re-enter password:<br />
-    <input type="password" name="password2" value="" />
-    <br /><br />
-    <input type="submit" value="Register" /> 
-</form><br />
-
 
 
 
