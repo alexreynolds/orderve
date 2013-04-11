@@ -4,7 +4,7 @@
 <head>
 
 	<!-- Imports fonts from Google Fonts API -->
-	<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -14,12 +14,13 @@
 
 body {
 	font-family:'Maven Pro', Geneva, sans-serif;
+	font-weight:400;
 	color:#000;
 	font-size:.8em;
 	background-color:#003366;
 	padding-top:20px;
 	background:url("back.jpg") no-repeat;
-	/*background-size:cover;*/
+	background-size:cover;
 	background-size:100%;
 }
 
@@ -32,6 +33,7 @@ body {
 .logo {
 	width:150px;
 	height:150px;
+	padding:10px;
 }
 
 /* logo footer */
@@ -61,12 +63,14 @@ body {
 .iteminfo {
 	text-align:left;
 	vertical-align:center;
+	padding-left:20px;
 }
 
 /* Bolded item names*/
 .itemb {
 	color:#37CEA0;
-	font-weight:600;
+	font-weight:400;
+	font-size:1.2em;
 }
 
 td {
