@@ -37,7 +37,7 @@ body {
 /* logo header */
 .logo {
 	width:25%;
-	height:25%;
+	height:auto;
 	padding:.2%;
 }
 
@@ -117,13 +117,35 @@ td {
 
 </head>
 
-<body>
+<body onload="window.addEventListener('orientationchange', handleOrientation, false);">
 
 <!-- Creates the relevant tables in the database if they have not already been created -->
 <?php include 'tablecreation.php' ?>
 
 
 <script>
+
+// Dictates what to do when device orientation changes
+function handleOrientation() {
+if (orientation == 0) {
+	// Portrait
+  alert('portrait');
+}
+else if (orientation == 90) {
+	// Landscape
+  alert('landscape');
+}
+else if (orientation == -90) {
+  // Landscape
+  alert('landscape');
+}
+else if (orientation == 180) {
+  // Upside down portrait
+}
+else {
+	// Do nothing, whack angles
+}
+}
 
 // Checks to see if there is location information already
 // If not, prompt the user to enter it and then continue on
@@ -140,7 +162,7 @@ if (url.indexOf("?seat=") == -1) {
 	window.location.search += ("?seat=" + loc);
 }
 
-// Tests to see if a mobile device
+// Tests to see if a mobile device, and which browser is being used
 var isMobile = {
     Android: function() {
         return navigator.userAgent.match(/Android/i);
@@ -162,9 +184,11 @@ var isMobile = {
     }
 };
 
+/* TESTING IT WORKS COOL
 if ( isMobile.any() ) { alert('MOBILE'); }
 if ( isMobile.Android() ) { alert('ANDROID'); }
 if ( isMobile.Opera() ) { alert('OPERA'); }
+*/
 
 </script>
 
