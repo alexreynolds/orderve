@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-	<!-- Imports fonts from Google Fonts API -->
-	<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+<!-- Imports fonts from Google Fonts API -->
+<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -129,7 +129,37 @@ td {
 <script>
 
 // Dictates what to do when device orientation changes
+// Note that on some tablets, landscape mode is considered standard orientation,
+// 	so must take that into consideration for orientation calculations
 function handleOrientation() {
+
+// Find standard screen orientation and adjust orientation accordingly
+int normOrientation = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+
+if (naturalOrientation == Surface.ROTATION_0)
+{
+	// Do nothing
+}
+else if (naturalOrientation == Surface.ROTATION_90)
+{
+    orientation += 90;
+}
+else if (naturalOrientation == Surface.ROTATION_180)
+{
+    orientation += 180;
+}
+else if (naturalOrientation == Surface.ROTATION_270)
+{
+    orientation += 270;
+}
+
+// Keeps the orientation angle [0,360]
+if (orientation > 360)
+{
+    orientation -= 360;
+}
+
+// Actions related to orientation
 if (orientation == 0) {
 	// Portrait
   alert('portrait');
