@@ -104,7 +104,7 @@ $('#qrForm').submit(function () {
     });
 
     var $level = $('input[@name="level"]:checked').val();
-    var $style = $('input[@name="style"]:checked').val();
+    var $style = $('input[@name=style]:checked').val();
 
     alert("style: " + values['style']);
 

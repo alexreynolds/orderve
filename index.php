@@ -2,27 +2,39 @@
 <?php session_start(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Orderve</title>
-</head>
 
+	<!-- Imports fonts from Google Fonts API -->
+	<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro' rel='stylesheet' type='text/css'>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Orderve</title>
 
 <style>
 
 body {
-	font-family:Tahoma, Geneva, sans-serif;
+	font-family:'Maven Pro', Geneva, sans-serif;
 	color:#000;
 	font-size:.8em;
 	background-color:#003366;
 	padding-top:20px;
 	background:url("back.jpg") no-repeat;
-	background-size:cover;
+	/*background-size:cover;*/
+	background-size:100%;
 }
 
 /* logo header */
 .logo {
 	width:150px;
 	height:150px;
+}
+
+/* logo footer */
+.logotxt {
+	font-size:2em;
+	color:#FFF;
+	vertical-align:center;
+	position:relative;
 }
 
 .round {
@@ -33,11 +45,11 @@ body {
 
 /* table containing menu */
 .menu {
-	border-radius:25px;
+	border-radius:15px;
 	background-color:#FFF;
 	padding:15px;
 	box-shadow: 0px 5px 10px #444;
-	width:350px;
+	width:50%;
 }
 
 /* table cell for food item info */
@@ -73,7 +85,23 @@ td {
 	height:40px;
 }
 
+.actionbar {
+	height:7%;
+	width:100%;
+	background-color:#222222;
+	position:fixed;
+	left:0px;
+	top:0px;
+	text-align:center;
+	vertical-align:center;
+	padding:.5%;
+	box-shadow: 0px 2px 10px #111;
+	padding-top:.5%;
+}
+
 </style>
+
+</head>
 
 <body>
 
@@ -95,11 +123,15 @@ td {
 	}
 ?>
 
+<!-- <div id="actionbar" class="actionbar"> <span class="logotxt">orderve</span> </div> -->
+
+
 <!-- Page content -->
 <div id="content" align="left" style="text-align:center">
 
 <!-- Displays the Orderve logo-->
-<a href="controls.php"><img src="logoopaque.png" class="logo" alt="orderve"></a><br />
+<a href="controls.php"><img src="logoopaque.png" class="logo" alt="orderve"></a>
+
 
 
 <!-- Automatically generate menu table of food options -->
@@ -184,7 +216,11 @@ td {
 	// Close off DRINKS table
 	echo "</tr></table></td></tr><br /></tr>";
 
+
+
 	/* === SECTION DIVIDER BETWEEN DRINKS AND MAIN COURSES === */
+
+	
 
 	// MAIN COURSES section
 	echo "<td align=\"left\"><div class=\"itemb\">Main Courses</div></td><td align=\"right\">
