@@ -143,30 +143,28 @@ if (url.indexOf("?seat=") == -1) {
 // Tests to see if a mobile device
 var isMobile = {
     Android: function() {
-    	alert("ANDROID!");
         return navigator.userAgent.match(/Android/i);
     },
     BlackBerry: function() {
-    	alert("BLACKBERRY!");
         return navigator.userAgent.match(/BlackBerry/i);
     },
     iOS: function() {
-    	alert("IPHONE!");
         return navigator.userAgent.match(/iPhone|iPad|iPod/i);
     },
     Opera: function() {
-    	alert("OPERA!");
         return navigator.userAgent.match(/Opera Mini/i);
     },
     Windows: function() {
-    	alert("WINDOWS!");
         return navigator.userAgent.match(/IEMobile/i);
     },
     any: function() {
-    	alert("MOBILE");
         return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
     }
 };
+
+if ( isMobile.any() ) { alert('MOBILE'); }
+if ( isMobile.Android() ) { alert('ANDROID'); }
+if ( isMobile.Opera() ) { alert('OPERA'); }
 
 </script>
 
