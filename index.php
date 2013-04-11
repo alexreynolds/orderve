@@ -27,12 +27,6 @@ body {
 	color:#000;
 	font-size:.8em;
 	padding-top:20px;
-	/*
-	background-color:#003366;
-	background:url("back.jpg") no-repeat;
-	background-size:cover;
-	background-size:100%;
-	*/
 }
 
 .content {
@@ -42,9 +36,9 @@ body {
 
 /* logo header */
 .logo {
-	width:150px;
-	height:150px;
-	padding:10px;
+	width:25%;
+	height:25%;
+	padding:.2%;
 }
 
 /* logo footer */
@@ -129,21 +123,10 @@ td {
 <?php include 'tablecreation.php' ?>
 
 
-<!-- Checks to see if location information exists, otherwise, prompt and redirect -->
-<?php
-	if (empty($_GET['seat']))
-	{
-		$_SESSION['seat'] = "unknown";
-		
-	}
-	else
-	{
-		// Takes note of the user's location for the rest of the session
-		$_SESSION['seat'] = $_GET['seat'];
-	}
-?>
-
 <script>
+
+// Checks to see if there is location information already
+// If not, prompt the user to enter it and then continue on
 
 var url = window.location.href;
 
@@ -156,6 +139,34 @@ if (url.indexOf("?seat=") == -1) {
 	// Redirects to new url with parameter
 	window.location.search += ("?seat=" + loc);
 }
+
+// Tests to see if a mobile device
+var isMobile = {
+    Android: function() {
+    	alert("ANDROID!");
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+    	alert("BLACKBERRY!");
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+    	alert("IPHONE!");
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+    	alert("OPERA!");
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+    	alert("WINDOWS!");
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+    	alert("MOBILE");
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
 
 </script>
 
