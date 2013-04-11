@@ -12,16 +12,27 @@
 
 <style>
 
+/* Sets the background to cover the whole window always and forever */
+html { 
+  background: url("back.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
 	font-family:'Maven Pro', Geneva, sans-serif;
 	font-weight:400;
 	color:#000;
 	font-size:.8em;
-	background-color:#003366;
 	padding-top:20px;
+	/*
+	background-color:#003366;
 	background:url("back.jpg") no-repeat;
 	background-size:cover;
 	background-size:100%;
+	*/
 }
 
 .content {
@@ -132,6 +143,22 @@ td {
 	}
 ?>
 
+<script>
+
+var url = window.location.href;
+
+// If there is no location information in the url already
+if (url.indexOf("?seat=") == -1) {
+
+	// Prompts the user to enter their location
+	var loc = prompt("Please enter your location.\nex. Room 123");
+
+	// Redirects to new url with parameter
+	window.location.search += ("?seat=" + loc);
+}
+
+</script>
+
 <!-- <div id="actionbar" class="actionbar">  </div> -->
 
 
@@ -139,7 +166,7 @@ td {
 <div id="content" class="content">
 
 <!-- Displays the Orderve logo-->
-<a href="controls.php"><img src="logoopaque.png" class="logo" alt="orderve"></a><br />
+<a href="controls.php"><img src="logoopaque.gif" class="logo" alt="orderve"></a><br />
 <span class="logotxt">orderve</span>
 
 <!-- Automatically generate menu table of food options -->
