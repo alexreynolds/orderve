@@ -23,6 +23,11 @@ body {
 	background-size:100%;
 }
 
+.content {
+	vertical-align:center;
+	text-align:center;
+}
+
 /* logo header */
 .logo {
 	width:150px;
@@ -65,7 +70,7 @@ body {
 }
 
 td {
-	padding:5px;
+	padding:1%;
 }
 
 /* +/- button style */
@@ -123,16 +128,15 @@ td {
 	}
 ?>
 
-<!-- <div id="actionbar" class="actionbar"> <span class="logotxt">orderve</span> </div> -->
+<!-- <div id="actionbar" class="actionbar">  </div> -->
 
 
 <!-- Page content -->
-<div id="content" align="left" style="text-align:center">
+<div id="content" class="content">
 
 <!-- Displays the Orderve logo-->
-<a href="controls.php"><img src="logoopaque.png" class="logo" alt="orderve"></a>
-
-
+<a href="controls.php"><img src="logoopaque.png" class="logo" alt="orderve"></a><br />
+<span class="logotxt">orderve</span>
 
 <!-- Automatically generate menu table of food options -->
 <?php
@@ -170,57 +174,12 @@ td {
 	// Selects all drinks from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'drink'");
 
-
-
-	while ($row = mysql_fetch_array($result))
-	{
-		// 3 items per row shown, start new row if current is filled
-		//if ($i>3) { echo "</tr><tr>"; $i=1; }
-		
-		// Begin table cell
-		echo "<tr><td>";
-
-		// Begin food item div
-		//echo "<div class=\"itemdiv\">";
-
-		// Begin table with item info. LHS is item image, RHS is info
-		echo "<table><tr>";
-			// LHS
-			echo "<td>";
-			// Draws image
-			echo "<img src=\"" . $row['ImageURL'] . "\" class=\"round\"><br/><br/>";
-			echo "</td><td class=\"iteminfo\">";
-			// RHS
-			// Name of food item
-			echo "<div class=\"itemb\">" . $row['FoodName'] . "</div>";
-			// Price of food item
-			echo "$" . number_format($row['FoodPrice'],2) . "<br />";
-			// Quantity of item
-			echo "Quantity: <input type=\"number\" id=\"q\" value=\"0\" min=\"0\" max=\"20\" step=\"1\"
-			name=\"" . $row['foodID'] . "\"><br />";
-			echo "</td>";
-		// End item info table
-		echo "</tr></table>";
-		// Hidden food name value
-		echo "<input type=\"hidden\" name=\"foodtype\" value=\"" . $row['FoodName'] . "\" />";
-		// Hidden seat location information
-		echo "<input type=\"hidden\" name=\"seat\" value=\"" . $_SESSION['seat'] . "\"/>";
-		// Hidden price information
-		echo "<input type=\"hidden\" name=\"price\" value=\"" . $row['FoodPrice'] . "\"/>";
-		// End div
-		//echo "</div>";
-		// End table cell and row
-		echo "</td><tr>";
-	}
-	
-	// Close off DRINKS table
-	echo "</tr></table></td></tr><br /></tr>";
-
+	// Generates drinks options table
+	optionsTableGen($result);
 
 
 	/* === SECTION DIVIDER BETWEEN DRINKS AND MAIN COURSES === */
 
-	
 
 	// MAIN COURSES section
 	echo "<td align=\"left\"><div class=\"itemb\">Main Courses</div></td><td align=\"right\">
@@ -233,50 +192,8 @@ td {
 	// Selects main course items from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'main'");
 
-	while ($row = mysql_fetch_array($result))
-	{
-		// 3 items per row shown, start new row if current is filled
-		//if ($i>3) { echo "</tr><tr>"; $i=1; }
-		
-		// Begin table cell
-		echo "<tr><td>";
-
-		// Begin food item div
-		//echo "<div class=\"itemdiv\">";
-
-		// Begin table with item info. LHS is item image, RHS is info
-		echo "<table><tr>";
-			// LHS
-			echo "<td>";
-			// Draws image
-			echo "<img src=\"" . $row['ImageURL'] . "\" class=\"round\"><br/><br/>";
-			echo "</td><td class=\"iteminfo\">";
-			// RHS
-			// Name of food item
-			echo "<div class=\"itemb\">" . $row['FoodName'] . "</div>";
-			// Price of food item
-			echo "$" . number_format($row['FoodPrice'],2) . "<br />";
-			// Quantity of item
-			echo "Quantity: <input type=\"number\" id=\"q\" value=\"0\" min=\"0\" max=\"20\" step=\"1\"
-			name=\"" . $row['foodID'] . "\"><br />";
-			echo "</td>";
-		// End item info table
-		echo "</tr></table>";
-		// Hidden food name value
-		echo "<input type=\"hidden\" name=\"foodtype\" value=\"" . $row['FoodName'] . "\" />";
-		// Hidden seat location information
-		echo "<input type=\"hidden\" name=\"seat\" value=\"" . $_SESSION['seat'] . "\"/>";
-		// Hidden price information
-		echo "<input type=\"hidden\" name=\"price\" value=\"" . $row['FoodPrice'] . "\"/>";
-		// End div
-		//echo "</div>";
-		// End table cell and row
-		echo "</td><tr>";
-		
-	}
-	
-	// Close off main courses table
-	echo "</tr></table></td></tr><br /></tr>";
+	// Generates main course options table
+	optionsTableGen($result);
 
 	// Button to submit order
 	echo "<tr><td align=\"right\"><input type=\"submit\" value=\"Place Order\"></td></tr>";
@@ -286,6 +203,54 @@ td {
 
 	// Close off menu table
 	echo "</table>";
+
+
+
+	// Function to generate the options tables
+	// INPUT: res, the mysql query result for the respective category
+	function optionsTableGen($res) {
+
+		while ($row = mysql_fetch_array($res))
+		{
+			// 3 items per row shown, start new row if current is filled
+			//if ($i>3) { echo "</tr><tr>"; $i=1; }
+			
+			// Begin table cell
+			echo "<tr><td>";
+
+			// Begin table with item info. LHS is item image, RHS is info
+			echo "<table><tr>";
+				// LHS
+				echo "<td>";
+				// Draws image
+				echo "<img src=\"" . $row['ImageURL'] . "\" class=\"round\"><br/><br/>";
+				echo "</td><td class=\"iteminfo\">";
+				// RHS
+				// Name of food item
+				echo "<div class=\"itemb\">" . $row['FoodName'] . "</div>";
+				// Price of food item
+				echo "$" . number_format($row['FoodPrice'],2) . "<br />";
+				// Quantity of item
+				echo "Quantity: <input type=\"number\" id=\"q\" value=\"0\" min=\"0\" max=\"20\" step=\"1\"
+				name=\"" . $row['foodID'] . "\"><br />";
+				echo "</td>";
+			// End item info table
+			echo "</tr></table>";
+			// Hidden food name value
+			echo "<input type=\"hidden\" name=\"foodtype\" value=\"" . $row['FoodName'] . "\" />";
+			// Hidden seat location information
+			echo "<input type=\"hidden\" name=\"seat\" value=\"" . $_SESSION['seat'] . "\"/>";
+			// Hidden price information
+			echo "<input type=\"hidden\" name=\"price\" value=\"" . $row['FoodPrice'] . "\"/>";
+			// End div
+			//echo "</div>";
+			// End table cell and row
+			echo "</td><tr>";
+		}
+		
+		// Close off table
+		echo "</tr></table></td></tr><br /></tr>";
+	}
 
 	?>
     
