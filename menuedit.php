@@ -36,6 +36,10 @@ img {
 	height:50%;	
 }
 
+.menu {
+  vertical-align:center;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -81,47 +85,18 @@ img {
 
 <br /><br />
 
+<!-- Takes the user back to the previous page -->
 <script>
     document.write('<a href="' + document.referrer + '">Go Back</a>');
 </script><br /><br /><br />
 
+
+<!-- Table encapsulating the page's contents-->
 <table id="outer">
-<tr>
-<td>
-
-<!--
-Allows establishment to edit menu via a form.
-Form data is sent to modify.php
--->
-
-<table><tr>
-<td align="left">
-<h2>Add item to Foods Table</h2><br /><br />
-<form action="modify.php" method="post">
-Food Name: <input type="text" name="foodname"> <br />
-Food Price (in dollars): <input type="text" name="foodprice"> <br />
-Image URL: <input type="text" name="imageurl"> <br />
-<input type="submit" value="Add"> <br />
-<input type="hidden" name="action" value="insert" /><br />
-</form>
-
-<br /><br />
-
-<h2>Remove item from Foods Table</h2><br /><br />
-<form action="modify.php" method="post">
-Food Name: <input type="text" name="foodname"> <br />
-<input type="submit" value="Remove"> <br />
-<input type="hidden" name="action" value="remove" /><br />
-</form>
-</td>
-
-</tr>
-</table>
-
 
 <tr><td>
 
-<h1>Foods</h1><br /><br />
+<h1>Menu</h1><br /><br />
 
 <!-- Print out contents of tables to keep an eye on things -->
 <?php
@@ -141,9 +116,10 @@ mysql_select_db($db, $con);
 
 // PRINT OUT FOODS TABLE //
 
-$result = mysql_query("SELECT * FROM Foods");
+// Gets items from table in alphabetical order
+$result = mysql_query("SELECT * FROM Foods ORDER BY FoodName ASC");
 
-echo "<table border='1'>
+echo "<table border='1' class='menu'>
 <tr>
 <th>Food Name</th>
 <th>Price</th>
@@ -175,52 +151,73 @@ while($row = mysql_fetch_array($result))
   }
 echo "</table><br />";
 
-
-echo "</td><td>";
-
-
-// == PRINT OUT USERS TABLE == //
-
-echo "<h1>Users</h1><br /><br />";
-
-$result = mysql_query("SELECT * FROM Users");
-
-echo "<table border='1'>
-<tr>
-<th>user ID</th>
-<th>Title</th>
-<th>First Name</th>
-<th>Last Name</th>
-<th>Phone</th>
-<th>E-mail</th>
-<th>OrderCount</th>
-<th>Time</th>
-</tr>";
-
-// Iterates through array of row results
-while($row = mysql_fetch_array($result))
-  {
-  echo "<tr>";
-  echo "<td>" . $row['userID'] . "</td>";
-  echo "<td>" . $row['Title'] . "</td>";
-  echo "<td>" . $row['FirstName'] . "</td>";
-  echo "<td>" . $row['LastName'] . "</td>";
-  echo "<td>" . $row['Phone'] . "</td>";
-  echo "<td>" . $row['Email'] . "</td>";
-  echo "<td>" . $row['OrderCount'] . "</td>";
-  echo "<td>" . $row['Time'] . "</td>";
-  echo "</tr>";
-  }
-echo "</table>";
-
-
-mysql_close($con);
 ?>
+
+</td>
+
+<td>
+
+<h1>Edit Menu</h1>
+
+<br />
+
+<!--
+Allows establishment to edit menu via a form.
+Form data is sent to modify.php
+-->
+
+<table><tr>
+<td align="left">
+
+<h2>Add item to menu</h2><br /><br />
+<form action="modify.php" method="post">
+Dish Name: <input type="text" name="foodname"> <br /><br />
+Price (in dollars): <input type="text" name="foodprice"> <br /><br />
+Image URL: <input type="text" name="imageurl"> <br /><br />
+Dish Type:
+<select name="category" id="category" onChange="getCategory()" required>
+<option value="select" disabled>Select a type</option>
+<option value="Drink">Drink</option>
+<option value="Appetizer">Appetizer</option>
+<option value="Salad">Salad</option>
+<option value="Main">Main</option>
+<option value="Dessert">Dessert</option>
+</select>
+<br /><br />
+Vegetarian?: <input type="checkbox" id="veg" name="veg" value="1">Yes <br /><br />
+<input type="submit" value="Add"> <br />
+<input type="hidden" name="action" value="insert" /><br />
+</form>
+
+<br /><br />
+
+<h2>Remove item from menu</h2><br /><br />
+<form action="modify.php" method="post">
+Food Name: <input type="text" name="foodname"> <br /><br />
+<input type="submit" value="Remove"> <br />
+<input type="hidden" name="action" value="remove" /><br />
+</form>
 
 </td></tr>
 </table>
 
+</td></tr>
+
+<!-- End of content table-->
+</table>
+
 </div>
+
+<script>
+// Gets the chosen food category from the drop down list
+function getCategory()
+{
+    var titles = document.getElementById("category");
+  document.getElementById("category").value=titles.options[titles.selectedIndex].value;
+  return document.getElementById("category").value;
+}
+
+</script>
 
 </body>
 </html>

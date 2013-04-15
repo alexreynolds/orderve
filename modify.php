@@ -49,12 +49,12 @@ if ($_POST['action']=='insert') {
 	// If true, there are already instances of the item in the table. Do nothing.
 	if ($num_rows)
 	{
-		echo "This item already exists in the table.";
+		echo "This item already exists in the menu.";
 	} 
 	else 	// Otherwise, insert item into table accordingly
 	{
-	$sql="INSERT INTO Foods (FoodName, FoodPrice, OrderCount, ImageURL)
-	VALUES ('$_POST[foodname]','$_POST[foodprice]', 0, '$_POST[imageurl]')";
+		$sql="INSERT INTO Foods (FoodName, FoodPrice, OrderCount, ImageURL, Category, Veg)
+		VALUES ('$_POST[foodname]','$_POST[foodprice]', 0, '$_POST[imageurl]', '$_POST[category]', '$_POST[veg]')";
 
 	// Error catch
 	if (!mysql_query($sql,$con))
@@ -63,7 +63,7 @@ if ($_POST['action']=='insert') {
   	}
   
 	echo "<img src=\"thumbsup.jpg\" class=\"round\"><br/><br/>";
-	echo "Added " . $_POST['foodname'] . " to the Foods table.";
+	echo "Added " . $_POST['foodname'] . " to the menu.";
 	}
 
 } 
@@ -88,12 +88,12 @@ else if ($_POST['action']=='remove') {
 			}
 			
 			echo "<img src=\"thumbsup.jpg\" class=\"round\"><br/><br/>";
-			echo "Removed " . $_POST['foodname'] . " from the Foods table.";
+			echo "Removed " . $_POST['foodname'] . " from the menu.";
 			
 		}
 	else // There is no instance of item in table. Cannot remove.
 		{
-			echo "There is no instance of " . $_POST['foodname'] . " in the table to remove. Sorry.";
+			echo "There is no instance of " . $_POST['foodname'] . " in the menu to remove. Sorry.";
 		}
 
 }

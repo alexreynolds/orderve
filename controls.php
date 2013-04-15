@@ -28,6 +28,7 @@ Hello <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'
 
 <a href="menuedit.php">Edit the menu</a><br />
 <a href="createqr.php">Create QR codes</a><br />
+<a href="analytics.php">Order Analytics</a><br />
 
 <h1>Add a New Admin</h1> 
 <form action="register.php" method="post"> 
