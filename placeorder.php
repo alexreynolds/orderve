@@ -90,8 +90,9 @@ $con = mysql_connect($servername,$username,$password);
 	// Else if user does not yet exist in table, insert
 	else
 	{
-	$sql="INSERT INTO Users (FirstName, LastName, Phone, Email, Time, OrderCount)
-	VALUES ('$_POST[firstname]', '$_POST[lastname]', '$_POST[usertel]', '$_POST[usermail]', '$_POST[time]', 0)";
+	$sql="INSERT INTO Users (Title, FirstName, LastName, Phone, Email, Time, OrderCount)
+	VALUES ('$_POST[titles]', '$_POST[firstname]', '$_POST[lastname]', '$_POST[usertel]', '$_POST[usermail]', '$_POST[time]', 0)";
+
 	
 	// Error catch
 		if (!mysql_query($sql,$con))
@@ -154,7 +155,7 @@ $con = mysql_connect($servername,$username,$password);
 
 <h1>Thanks for your order!</h1> <br /><br />
 
-Cheers for your service <?php echo $_POST['titles'] ?>  <?php echo $_POST['lastname'] ?> !<br />
+Cheers for your service <?php echo $_POST['titles'] ?>  <?php echo $_POST['lastname'] ?>!<br />
 
 You should recieve a confirmation email shortly,<br />
 and your order soon after that.<br /><br />

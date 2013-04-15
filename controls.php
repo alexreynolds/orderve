@@ -26,6 +26,7 @@
 
 Hello <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?>, welcome to God Mode!<br /><br />
 
+<a href="pending.php">PENDING ORDERS</a><br /><br />
 <a href="menuedit.php">Edit the menu</a><br />
 <a href="createqr.php">Create QR codes</a><br />
 <a href="analytics.php">Order Analytics</a><br />

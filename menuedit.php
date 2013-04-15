@@ -86,9 +86,11 @@ img {
 <br /><br />
 
 <!-- Takes the user back to the previous page -->
-<script>
+<a href="controls.php">Go Back to Controls</a><br /><br />
+<!--<script>
     document.write('<a href="' + document.referrer + '">Go Back</a>');
 </script><br /><br /><br />
+-->
 
 
 <!-- Table encapsulating the page's contents-->

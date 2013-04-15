@@ -70,9 +70,10 @@ body {
 	border-radius:15px;
 	background-color:#FFF;
 	padding:15px;
-	margin-top:-10%;
+	margin-top:-5%;
 	/*box-shadow: 0px 5px 10px #444;*/
 	width:75%;
+	margin-bottom:16%;
 }
 
 /* table cell for food item info */
@@ -127,6 +128,7 @@ nav {
 	position:fixed;
 	left:0px;
 	width:100%;
+	height:auto;
 	vertical-align:center;
 	/*box-shadow: 0px 2px 10px #111;*/
 	background-image: linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
