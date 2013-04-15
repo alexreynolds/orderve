@@ -81,7 +81,9 @@ img {
 
 <br /><br />
 
-<a href="index.php?seat=hammock">Go Home</a><br /><br /><br />
+<script>
+    document.write('<a href="' + document.referrer + '">Go Back</a>');
+</script><br /><br /><br />
 
 <table id="outer">
 <tr>
@@ -113,44 +115,8 @@ Food Name: <input type="text" name="foodname"> <br />
 </form>
 </td>
 
-<td>
-<h2>Add item to Orders Table</h2><br /><br />
-<form action="modify.php" method="post">
-Description: <input type="text" name="description"> <br />
-<!-- MOVED TO DIFFERENT TABLE
-Title: <input type="text" name="title"> <br />
-First Name:<input type="text" name="first"> <br />
-Last Name:<input type="text" name="last" /><br />
-Phone Number:<input type="tel" name="phone" /><br />
-E-Mail:<input type="email" name="email" /><br />
-Time:<input type="datetime" name="time"  /><br />
--->
-<input type="submit" value="Add"> <br />
-<input type="hidden" name="action" value="insert" /><br />
-</form>
-</td>
-
 </tr>
-<tr>
-
-<td align="left">
-<!-- Calls to return all OrderCount values in the Foods table to 0 -->
-<h3>Clear Foods OrderCount</h3><br /><br />
-<form action="modify.php" method="post" name="clearfoods"
-	onsubmit="return confirm('Are you sure you want to return all order counts to 0?')">
-<input type="submit" value="Clear Foods OrderCounts"/><br />
-<input type="hidden" name="action" value="clearfoods" /><br />
-</form>
-
-<!-- Calls to return all OrderCount values in the Orders table to 0 -->
-<h3>Clear Orders OrderCount</h3><br /><br />
-<form action="modify.php" method="post" name="clearorders"
-	onsubmit="btnClick()">
-<input type="submit" value="Clear Orders OrderCounts"/><br />
-<input type="hidden" name="action" value="clearorders" /><br />
-</form>
-
-</tr></table>
+</table>
 
 
 <tr><td>
@@ -209,33 +175,6 @@ while($row = mysql_fetch_array($result))
   }
 echo "</table><br />";
 
-
-echo "</td><td>";
-
-
-// == PRINT OUT ORDERS TABLE == //
-
-echo "<h1>Orders</h1><br /><br />";
-
-$result = mysql_query("SELECT * FROM Orders");
-
-echo "<table border='1'>
-<tr>
-<th>seat ID</th>
-<th>OrderCount</th>
-<th>Seat Name</th>
-</tr>";
-
-// Iterates through array of row results
-while($row = mysql_fetch_array($result))
-  {
-  echo "<tr>";
-  echo "<td>" . $row['seatID'] . "</td>";
-  echo "<td>" . $row['OrderCount'] . "</td>";
-  echo "<td>" . $row['Description'] . "</td>";
-  echo "</tr>";
-  }
-echo "</table>";
 
 echo "</td><td>";
 

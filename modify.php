@@ -24,6 +24,8 @@ body {
 
 <?php
 
+// Establishes a connection with the database
+$db = "my_db";
 $servername = "localhost";
 $username = "user";
 $password = "wachtwoord";
@@ -35,7 +37,7 @@ if (!$con)
   die('Could not connect: ' . mysql_error());
   }
 
-mysql_select_db("my_db", $con);
+mysql_select_db($db, $con);
 
 // INSERTING an item into Foods table
 if ($_POST['action']=='insert') {
@@ -96,7 +98,8 @@ else if ($_POST['action']=='remove') {
 
 }
 
-// CLEARING all of the stored OrderCount values and setting them to 0
+// CLEARS all of the stored OrderCount values from ORDERS/FOODS tables (either)
+//	Resets the values to 0
 else if ($_POST['action']=='clearfoods' || $_POST['action']=='clearorders') {
 	
 	if ($_POST['action']=='clearfoods') { $sql="UPDATE Foods SET OrderCount=0"; }

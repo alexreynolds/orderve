@@ -93,6 +93,24 @@ $sql = "CREATE TABLE admins
 // Executes admins table creation
 mysql_query($sql, $con);
 
+
+// Creates a pending table in database
+// Table contains a list of orders that have yet to be filled
+
+mysql_select_db($dbname, $con);
+$sql = "CREATE TABLE pending
+(
+  orderID int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY(orderID),
+  Location varchar(20),
+  Name varchar(50),
+  Comments varchar(250),
+  Time time
+  )";
+
+// Executes pending table creation
+mysql_query($sql, $con);
+
 // connection closes when script ends
 mysql_close($con);
 ?>

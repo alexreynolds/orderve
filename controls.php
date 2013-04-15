@@ -50,7 +50,9 @@ Hello <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'
 <a href="logout.php">Log out</a><br />
 
 <br /><br />
-<a href="index.php?seat=THRONE">Back to main</a>
+<script>
+    document.write('<a href="' + document.referrer + '">Go Back</a>');
+</script>
 
 </body>
 </html>
