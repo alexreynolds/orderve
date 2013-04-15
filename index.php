@@ -1,3 +1,7 @@
+<!-- HOME PAGE
+	WRITTEN BY ALEX REYNOLDS, 2013
+-->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php session_start(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -29,27 +33,30 @@ body {
 	font-weight:400;
 	color:#000;
 	font-size:.8em;
-	padding-top:20px;
+	padding-top:10%;
 }
 
 .content {
-	vertical-align:center;
 	text-align:center;
 }
 
-/* logo header */
+/* logo image*/
 .logo {
-	width:25%;
+	width:20%;
 	height:auto;
-	padding:.2%;
+	margin:.2%;
 }
 
 /* logo footer */
 .logotxt {
-	font-size:2em;
+	font-size:1.8em;
 	color:#FFF;
-	vertical-align:center;
-	position:relative;
+	text-align:center;
+	position:fixed;
+	top:0;
+	margin:0;
+	margin-top:1%;
+	width:100%;
 }
 
 .round {
@@ -63,8 +70,9 @@ body {
 	border-radius:15px;
 	background-color:#FFF;
 	padding:15px;
-	box-shadow: 0px 5px 10px #444;
-	width:50%;
+	margin-top:-10%;
+	/*box-shadow: 0px 5px 10px #444;*/
+	width:75%;
 }
 
 /* table cell for food item info */
@@ -79,41 +87,97 @@ body {
 	color:#37CEA0;
 	font-weight:400;
 	font-size:1.2em;
+	vertical-align:center;
 }
 
 td {
 	padding:1%;
+	vertical-align:center;
+}
+
+.btncell {
+	width:10%;
 }
 
 /* +/- button style */
 .expand {
 	width:20px;
 	height:20px;
+	vertical-align:center;
 }
 
-/* check out button
-	NOT WORKING */
+/* Check out button*/
 .checkout {
-	background:#FFF url("buttoncheck.png") no-repeat;
+	/*background:#FFF url("buttoncheck.png") no-repeat;*/
 	border:none;
 	vertical-align:center;
-	padding:10px;
-	width:65px;
-	height:40px;
+	width:auto;
+	height:auto;
+	display:inline-block;
+	margin-right:5%;
+	list-style:none;
+	text-align:right;
 }
 
-.actionbar {
-	height:7%;
-	width:100%;
-	background-color:#222222;
+/* Styling for nav bar */
+nav {
+	display:inline-block;
+	padding-top:2%;
+	padding-right:5%;
 	position:fixed;
 	left:0px;
-	top:0px;
-	text-align:center;
+	width:100%;
 	vertical-align:center;
-	padding:.5%;
-	box-shadow: 0px 2px 10px #111;
-	padding-top:.5%;
+	/*box-shadow: 0px 2px 10px #111;*/
+	background-image: linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -o-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -moz-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -webkit-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -ms-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(18,18,18)),
+	color-stop(0.04, rgb(20,20,20)),
+	color-stop(0.83, rgb(31,31,31))
+);
+}
+
+.top {
+	top:0px;
+	height:7%;
+	text-align:right;
+}
+
+.bottom {
+	bottom:0;
+	height:15%;
+	text-align:left;
+	vertical-align:center;
+	padding-left:2%;
+	background-image: linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -o-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -moz-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -webkit-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -ms-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(18,18,18)),
+	color-stop(0.04, rgb(20,20,20)),
+	color-stop(0.83, rgb(31,31,31))
+);
+}
+
+/* Displays copyright information */
+footer {
+	/*position:absolute;*/
+	bottom:0;
+	text-align:center;
+	font-size:.3em;
+	color:#666;
 }
 
 </style>
@@ -134,7 +198,7 @@ td {
 function handleOrientation() {
 
 // Find standard screen orientation and adjust orientation accordingly
-int normOrientation = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+/*int normOrientation = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
 
 if (naturalOrientation == Surface.ROTATION_0)
 {
@@ -152,6 +216,9 @@ else if (naturalOrientation == Surface.ROTATION_270)
 {
     orientation += 270;
 }
+*/
+// Simpler attempt to fix orientation
+if (orientation == 0 && window.width > window.height) { orientation += 90; }
 
 // Keeps the orientation angle [0,360]
 if (orientation > 360)
@@ -225,15 +292,22 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 
 </script>
 
-<!-- <div id="actionbar" class="actionbar">  </div> -->
 
+
+<!-- Nav bar with submit order button -->
+<nav class="top">
+	<input type="submit" form="orderform" class="checkout"/>
+</nav>
+
+
+<!-- Displays logo text over nav bar
+<span class="logotxt">orderve</span> -->
 
 <!-- Page content -->
 <div id="content" class="content">
 
-<!-- Displays the Orderve logo-->
-<a href="controls.php"><img src="logoopaque.gif" class="logo" alt="orderve"></a><br />
-<span class="logotxt">orderve</span>
+<!-- Displays the Orderve logo
+<a href="controls.php"><img src="logoopaque.gif" class="logo" alt="orderve"></a><br />-->
 
 <!-- Automatically generate menu table of food options -->
 <?php
@@ -258,13 +332,15 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	echo "<table align=\"center\" class=\"menu\" id=\"menu\"><tr>";
 
 	// Form to submit order
-	echo "<form method=\"post\" action=\"orderinfo.php\">";
+	echo "<form method=\"post\" action=\"orderinfo.php\" id=\"orderform\">";
 
 	// DRINKS section
-	echo "<td align=\"left\"><div class=\"itemb\">Drinks</div></td><td align=\"right\">
+	echo "<td align=\"left\"><div class=\"itemb\">Drinks</div></td>
+			<td align=\"right\">
 			<img class=\"expand\" id=\"drinkbtnexpand\" src=\"buttonplus.png\" onClick=\"toggleDisplay('drinks', 'drinkbtnexpand')\">
-			<img class=\"expand\" id=\"drinkbtncontract\" src=\"buttonminus.png\" onClick=\"toggleDisplay('drinks', 'drinkbtncontract')\"  style=\"display:none;\"></td></tr>";
-	
+			<img class=\"expand\" id=\"drinkbtncontract\" src=\"buttonminus.png\" onClick=\"toggleDisplay('drinks', 'drinkbtncontract')\"  style=\"display:none;\">
+			</td></tr>";
+			
 	// Begins drinks table
 	echo "<tr id=\"drinks\" style=\"display:none;\"><td><table>";
 
@@ -279,10 +355,12 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 
 
 	// MAIN COURSES section
+	
 	echo "<td align=\"left\"><div class=\"itemb\">Main Courses</div></td><td align=\"right\">
 			<img class=\"expand\" id=\"mainbtnexpand\" src=\"buttonplus.png\" onClick=\"toggleDisplay('maincourses', 'mainbtnexpand')\">
 			<img class=\"expand\" id=\"mainbtncontract\" src=\"buttonminus.png\" onClick=\"toggleDisplay('maincourses', 'mainbtncontract')\" style=\"display:none;\"></td></tr>";
 	
+
 	// Begins Main courses table (contains all selections for category)
 	echo "<tr id=\"maincourses\" style=\"display:none;\"><td><table>";
 
@@ -293,7 +371,9 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	optionsTableGen($result);
 
 	// Button to submit order
-	echo "<tr><td align=\"right\"><input type=\"submit\" value=\"Place Order\"></td></tr>";
+	// *** HAS BEEN MOVED TO THE TOP NAV BAR ***
+	// echo "<tr><td align=\"right\"><input type=\"submit\" value=\"Place Order\"></td></tr>";
+
 	// Finish form
 	echo "</form><br /><br />";
 
@@ -354,7 +434,20 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
     
     <br /><br />
     
+<nav class="bottom">
+<table>
+	<tr><td style="display:inline-block; width:100px;">
+		<!-- Displays the Orderve logo-->
+		<a href="controls.php"><img src="logoopaque.gif" class="logo" alt="orderve"></a>
+	</td><td>
+		content<br />
+		content<br />
+	</td></tr>
+</table>
+</nav>
     		
+
+<footer>Copyright © 2013 Alex Reynolds</footer>
 
 </div>
     

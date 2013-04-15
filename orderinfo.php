@@ -1,17 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
+<!-- Imports fonts from Google Fonts API -->
+<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- Fits view to device screen width -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Order Information</title>
 </head>
 
 
 <style>
 
+/* Sets the background to cover the whole window always and forever */
+html { 
+  background: url("back.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body{
 	font-family:Tahoma, Geneva, sans-serif;
 	color:#FFF;
-	background-color:#0CC;
 	font-size:14px;
 }
 
@@ -41,7 +56,7 @@ a {
 <div align="center" id="main">
 
 <br />
-<a href="index.php?seat=hammock">Home</a>  |  <a href="menuedit.php">Edit Menu</a>
+<a href="index.php?seat=hammock">Home</a>
 <br /><br />
 
 <!-- Div is displayed when user navigates here without ordering anything -->

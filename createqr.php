@@ -26,7 +26,7 @@
 <form name="qrForm" id="qrForm">
 
 <fieldset>
-Input URL: <input type="url" name="url" id ="url" placeholder="http://yourdomain.com"><br />
+Input URL: <input type="text" name="url" id ="url" placeholder="http://yourdomain.com"><br />
 </fieldset>
 
 <br />
@@ -46,9 +46,10 @@ Input URL: <input type="url" name="url" id ="url" placeholder="http://yourdomain
 <b>QR Style</b><br />
 
 <fieldset>
+<input type="radio" name="style" value="standard">Square (standard QR)</input><br />
 <input type="radio" name="style" value="circle" checked>Circular</input><br />
 <input type="radio" name="style" value="roundrect">Rounded Rectangle</input><br />
-<input type="radio" name="style" value="standard">Square (standard QR)</input><br />
+
 </fieldset>
 
 <br />
@@ -84,6 +85,7 @@ Select the color for your QR code.<br /><br />
 
 <!-- Include jQuery code -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
 <script>
 
 // Run upon form submission
@@ -98,17 +100,17 @@ $('#qrForm').submit(function () {
 	// Puts all of the inputs from the form into an array
 	$inputs = $('#qrForm :input');
 
+
 	// Makes an associative array of values from the input array
     $inputs.each(function() {
         values[this.name] = $(this).val();
     });
 
-    var $level = $('input[@name="level"]:checked').val();
-    var $style = $('input[@name=style]:checked').val();
-
-    alert("style: " + values['style']);
-
-	drawqr(4, values['divname'], values['url'], $level, $style, values['colordark']);
+    // Clears the div so that there is only 1 code shown at a time
+    clearDiv(values['divname']);
+    
+    // Draws the QR in the div
+	drawqr(4, values['divname'], values['url'], values['level'], values['style'], values['colordark']);
 
 	// Makes the button to save image active
 	document.getElementById("savecode").disabled = false;
@@ -118,9 +120,12 @@ $('#qrForm').submit(function () {
 	return false;
 });
 
-
-// Hopefully draws the QR
-//drawqr(4, "qr_spot", "http://qrproject.cs.vassar.edu", "L");
+// Clears out the div where the QR code goes so only one
+// is shown at a time
+function clearDiv(id)
+{
+	document.getElementById(id).innerHTML="";
+}
 
 // Saves the generated QR code as .png file on the user's system
 function saveCode()
