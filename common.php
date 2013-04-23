@@ -58,7 +58,7 @@
     header('Content-Type: text/html; charset=utf-8'); 
      
     // Begin session
-    //session_start(); 
+    session_start(); 
 
     // Note that it is a good practice to NOT end your PHP files with a closing PHP tag. 
     // This prevents trailing newlines on the file from being included in your output, 
