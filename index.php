@@ -110,6 +110,8 @@ td {
 /* Check out button*/
 .checkout {
 	/*background:#FFF url("buttoncheck.png") no-repeat;*/
+	background:rgb(255, 255, 255) transparent;
+	background:rgba(255,0,0,0);
 	border:none;
 	vertical-align:center;
 	width:auto;
@@ -118,12 +120,15 @@ td {
 	margin-right:5%;
 	list-style:none;
 	text-align:right;
+	color:#ABE52C;
+	font-weight:bold;
+	font-size:1em;
 }
 
 /* Styling for nav bar */
 nav {
 	display:inline-block;
-	padding-top:2%;
+	padding-top:1%;
 	padding-right:5%;
 	position:fixed;
 	left:0px;
@@ -144,6 +149,12 @@ nav {
 	color-stop(0.04, rgb(20,20,20)),
 	color-stop(0.83, rgb(31,31,31))
 );
+}
+
+.head {
+	/*margin-left:50%;*/
+	color:#FFF;
+	font-size:1.8em;
 }
 
 .top {
@@ -287,6 +298,9 @@ var isMobile = {
 };
 
 /* TESTING IT WORKS COOL
+
+// SHOULD HAVE SO IF NOT MOBILE DO SOMETHING 
+
 if ( isMobile.any() ) { alert('MOBILE'); }
 if ( isMobile.Android() ) { alert('ANDROID'); }
 if ( isMobile.Opera() ) { alert('OPERA'); }
@@ -298,7 +312,11 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 
 <!-- Nav bar with submit order button -->
 <nav class="top">
-	<input type="submit" form="orderform" class="checkout"/>
+	<table style="width:100%; text-align:center; vertical-align:center"><tr>
+		<td style="width:100px"></td>
+		<td style="padding:0"><span class="head">Orderve</span></td>
+		<td style="width:100px"><input type="submit" value="Checkout" form="orderform" class="checkout"/></td>
+	</tr></table>
 </nav>
 
 
@@ -330,9 +348,14 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	mysql_select_db($db, $con);
 
 	// Begin session
-    //session_start(); 
 
-    //$_SESSION['seat'] = $_POST['seat'];
+	if(session_id() == '') {
+    // session isn't started
+		session_start();
+	}
+
+	// Sets session seat variable as user's loc
+	$_SESSION['seat'] = $_GET['seat'];
 	
 	
 	// Begins menu table (white rounded rectangle background)

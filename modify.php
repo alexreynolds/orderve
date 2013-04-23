@@ -114,6 +114,7 @@ else if ($_POST['action']=='clearfoods' || $_POST['action']=='clearorders') {
 }
 
 // REMOVING an item from pending table
+// Done when an order has been completed
 else if ($_POST['action']=='ordercomplete') {
 	
 	$ordernum = $_POST['ordernumber'];

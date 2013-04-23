@@ -84,6 +84,7 @@ of both tables accordingly.
 $servername = "localhost";
 $username = "user";
 $password = "wachtwoord";
+$db = "my_db";
 
 $con = mysql_connect($servername,$username,$password);
 	
@@ -93,7 +94,7 @@ $con = mysql_connect($servername,$username,$password);
   		die('Could not connect: ' . mysql_error());
   	}
 
-	mysql_select_db("my_db", $con);
+	mysql_select_db($db, $con);
 	
 
 // === ORDER RECEIPT GENERATION === //
@@ -136,7 +137,7 @@ $con = mysql_connect($servername,$username,$password);
 	}
 	
 	// Start a session to put arrays to be passed in
-	session_start();
+	//session_start();
 	$_SESSION['foodArray'] = $foodArray;
 	$_SESSION['quanArray'] = $quanArray;
 	

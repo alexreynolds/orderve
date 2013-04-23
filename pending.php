@@ -3,6 +3,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Pending Orders</title>
+
+
+
+<style type="text/css">
+
+body {
+  text-align:center;
+  padding:5%;
+}
+
+div {
+  margin:auto;
+}
+
+table {
+  text-align:center;
+}
+
+th {
+  padding:10px;
+}
+
+
+</style>
+
 </head>
 
 <body>
@@ -23,10 +48,15 @@
 ?> 
 
 <!-- Takes user back to previous page-->
-<script>
-    document.write('<a href="' + document.referrer + '">Go Back</a>');
-</script><br /><br /><br />
+<a href="controls.php">Back to controls</a>
+<br /><br /><br />
 
+<!-- Refresh button for page-->
+<input type="button" value="Refresh page" onClick="document.location.reload(true)">
+
+<br><br>
+
+<div id="tablecontent">
 
 <!-- Print out contents of user table -->
 <?php
@@ -91,7 +121,7 @@ echo "</table>";
 mysql_close($con);
 ?>
 
-
+</div>
 
 
 </body>

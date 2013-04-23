@@ -28,7 +28,6 @@
 </script><br /><br /><br />
 
 
-<!-- Print out contents of user table -->
 <?php
 
 $servername = "localhost";
@@ -43,6 +42,56 @@ if (!$con)
   }
 
 mysql_select_db($db, $con);
+
+
+
+// Contains useful information about order history
+
+echo "<h1>Statistics</h1>";
+
+echo "<br />";
+
+// Gets total order count based on Foods table values
+
+$result = mysql_query("SELECT SUM(OrderCount) AS ordersum FROM Foods"); 
+$row = mysql_fetch_assoc($result); 
+$sum = $row['ordersum'];
+
+echo "<b>Total orders to date: </b>" . $sum . "<br /><br />";
+
+
+// Figures out the most popular (highest order count) item
+
+$result = mysql_query("SELECT MAX(OrderCount) AS pop FROM Foods");
+$row = mysql_fetch_assoc($result); 
+
+  // Holds the highest order count (an int)
+  $item = $row['pop'];
+
+$result = mysql_query("SELECT * FROM Foods WHERE OrderCount = $item");
+$row = mysql_fetch_assoc($result);
+
+echo "<b>Most popular menu item: </b>" . $row['FoodName'] . " | <b>" . $row['OrderCount'] . "</b> orders<br /><br />";
+
+
+// Figures out the least popular (lowest order count) item
+
+$result = mysql_query("SELECT MIN(OrderCount) AS notpop FROM Foods");
+$row = mysql_fetch_assoc($result); 
+
+  // Holds the lowest order count (an int)
+  $item = $row['notpop'];
+
+$result = mysql_query("SELECT * FROM Foods WHERE OrderCount = $item");
+$row = mysql_fetch_assoc($result);
+
+echo "<b>Least popular menu item: </b>" . $row['FoodName'] . " | <b>" . $row['OrderCount'] . "</b> orders<br /><br />";
+
+
+echo"</div>";
+
+
+
 
 // == PRINT OUT USERS TABLE == //
 
