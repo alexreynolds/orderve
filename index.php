@@ -328,6 +328,11 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
   	}
 	
 	mysql_select_db($db, $con);
+
+	// Begin session
+    //session_start(); 
+
+    //$_SESSION['seat'] = $_POST['seat'];
 	
 	
 	// Begins menu table (white rounded rectangle background)

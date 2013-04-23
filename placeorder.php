@@ -40,8 +40,28 @@ $con = mysql_connect($servername,$username,$password);
 	mysql_select_db("my_db", $con);
 	
 	session_start();
-	
-	// === UPDATES FOODS TABLE === //
+
+	// === UPDATES PENDING ORDERS TABLE === //
+
+	$fullname = $_POST['titles'] . " " . $_POST['firstname'] . " " . $_POST['lastname'];
+
+	$sql="INSERT INTO pending (Location, Name, Comments, Time)
+			VALUES ('$_POST[seat]', '$fullname', '$_POST[comments]', '$_POST[time]')";
+
+	// Error catch
+		if (!mysql_query($sql,$con))
+		{
+			die('Error: ' . mysql_error());
+		}
+
+	// Gets the assigned orderID from pending (for orders)
+	// 	by getting it via the time
+	$result = mysql_query("SELECT * FROM pending where Time='$_POST[time]'");
+	$row = mysql_fetch_array($result);
+	$orderID = $row['orderID'];
+
+
+	// === UPDATES FOODS AND ORDERS TABLE === //
 	
 	// The arrays from previous page, containing items ordered and quantities
 	$foodArray = $_SESSION['foodArray'];	// Array of food names
@@ -57,13 +77,20 @@ $con = mysql_connect($servername,$username,$password);
 			if ($row['FoodName']==$foodname)
 			{
 				// New OrderCount of item is equal to old count + quantity from new order
+				$quantity = $quanArray[$i];
 				$count = $row['OrderCount'] + $quanArray[$i];
+
+				// Inserts food order and quantity into Orders table
+				mysql_query("INSERT INTO Orders (orderID, foodID, count)
+					VALUES ('$orderID', '$foodname', '$quantity')");
 				
 				// Updates OrderCount value in Foods table
 				mysql_query("UPDATE Foods SET OrderCount=$count WHERE FoodName='$foodname'");
 			}
 		}
 	}
+
+
 	
 	// === UPDATES USERS TABLE ===
 	
@@ -91,7 +118,7 @@ $con = mysql_connect($servername,$username,$password);
 	else
 	{
 	$sql="INSERT INTO Users (Title, FirstName, LastName, Phone, Email, Time, OrderCount)
-	VALUES ('$_POST[titles]', '$_POST[firstname]', '$_POST[lastname]', '$_POST[usertel]', '$_POST[usermail]', '$_POST[time]', 0)";
+	VALUES ('$_POST[titles]', '$_POST[firstname]', '$_POST[lastname]', '$_POST[usertel]', '$_POST[usermail]', '$_POST[time]', 1)";
 
 	
 	// Error catch
@@ -114,7 +141,7 @@ $con = mysql_connect($servername,$username,$password);
 	
 	
 	// === UPDATES ORDERS TABLE === //
-
+	/*
 	// Description of user's location (i.e. seat/table/room number)
 	$loc = $_POST['seat'];
 	$result = mysql_query("SELECT * FROM Orders WHERE Description='$loc'");
@@ -146,6 +173,10 @@ $con = mysql_connect($servername,$username,$password);
 			die('Error: ' . mysql_error());
 		}
 	}
+	*/
+
+	// Gets rid of seat variable in session so it's not saved too long
+	unset($_SESSION['seat']); 
 	
 ?>
 

@@ -215,6 +215,9 @@ $con = mysql_connect($servername,$username,$password);
 </tr><tr>
 <td>Why not an e-mail as well? You never know:</td>
 <td><input type="email" name="usermail" value="username@mail.com" onclick="clearValue(this)"/></td>
+</tr><tr>
+<td>Comments about order:</td>
+<td><input type="text" name="comments" value="Type your comments here." onClick="clearValue(this)"/></td>
 </tr>
 </table>
 

@@ -113,6 +113,36 @@ else if ($_POST['action']=='clearfoods' || $_POST['action']=='clearorders') {
 		
 }
 
+// REMOVING an item from pending table
+else if ($_POST['action']=='ordercomplete') {
+	
+	$ordernum = $_POST['ordernumber'];
+	$result = mysql_query("SELECT * FROM pending WHERE orderID='$ordernum'");
+	$num_rows = mysql_num_rows($result);
+
+	// If true, there are already instances of the item in the table. Can be removed.
+	if ($num_rows)
+		{
+				
+			$sql="DELETE FROM pending WHERE orderID='" . $_POST['ordernumber'] . "'";
+			
+			// Error catch
+			if (!mysql_query($sql, $con))
+			{
+				die('Error: ' . mysql_error());
+			}
+			
+			echo "<img src=\"thumbsup.jpg\" class=\"round\"><br/><br/>";
+			echo "Removed order " . $_POST['ordernumber'] . " from the pending orders list.";
+			
+		}
+	else // There is no instance of item in table. Cannot remove.
+		{
+			echo "There is no instance of " . $_POST['ordernumber'] . " in the menu to remove. Sorry.";
+		}
+
+}
+
 
 // Close server connection
 mysql_close($con);
@@ -121,7 +151,7 @@ mysql_close($con);
 <br /><br />
 
 <!-- Goes back to menu edit page -->
-<a href="menuedit.php">Go Back</a>
+<a href="controls.php">Back to control panel</a>
 
 </body>
 </html>
