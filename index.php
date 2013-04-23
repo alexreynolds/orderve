@@ -87,7 +87,7 @@ body {
 .itemb {
 	color:#37CEA0;
 	font-weight:400;
-	font-size:1.2em;
+	font-size:1em;
 	vertical-align:center;
 }
 
@@ -122,7 +122,7 @@ td {
 	text-align:right;
 	color:#ABE52C;
 	font-weight:bold;
-	font-size:1em;
+	font-size:.8em;
 }
 
 /* Styling for nav bar */
@@ -367,8 +367,8 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	// DRINKS section
 	echo "<td align=\"left\"><div class=\"itemb\">Drinks</div></td>
 			<td align=\"right\">
-			<img class=\"expand\" id=\"drinkbtnexpand\" src=\"buttonplus.png\" onClick=\"toggleDisplay('drinks', 'drinkbtnexpand')\">
-			<img class=\"expand\" id=\"drinkbtncontract\" src=\"buttonminus.png\" onClick=\"toggleDisplay('drinks', 'drinkbtncontract')\"  style=\"display:none;\">
+			<img class=\"expand\" id=\"drinkbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('drinks', 'drinkbtnexpand')\">
+			<img class=\"expand\" id=\"drinkbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('drinks', 'drinkbtncontract')\"  style=\"display:none;\">
 			</td></tr>";
 			
 	// Begins drinks table
@@ -387,8 +387,8 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	// MAIN COURSES section
 	
 	echo "<td align=\"left\"><div class=\"itemb\">Main Courses</div></td><td align=\"right\">
-			<img class=\"expand\" id=\"mainbtnexpand\" src=\"buttonplus.png\" onClick=\"toggleDisplay('maincourses', 'mainbtnexpand')\">
-			<img class=\"expand\" id=\"mainbtncontract\" src=\"buttonminus.png\" onClick=\"toggleDisplay('maincourses', 'mainbtncontract')\" style=\"display:none;\"></td></tr>";
+			<img class=\"expand\" id=\"mainbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('maincourses', 'mainbtnexpand')\">
+			<img class=\"expand\" id=\"mainbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('maincourses', 'mainbtncontract')\" style=\"display:none;\"></td></tr>";
 	
 
 	// Begins Main courses table (contains all selections for category)
