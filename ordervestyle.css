@@ -1,0 +1,226 @@
+/* Sets the background to cover the whole window always and forever */
+html { 
+  background: url("back.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+	font-family:'Maven Pro', Geneva, sans-serif;
+	font-weight:400;
+	color:#000;
+	font-size:.8em;
+	padding-top:10%;
+	text-align:center;
+	padding:5%;
+}
+
+a {
+	text-decoration:none;
+	color:#37CEA0;
+	font-weight:bold;
+}
+
+h1 {
+	color:#ABE52C;
+	font-size:8em;
+	margin-bottom:5%;
+	margin-top:7%;
+}
+
+h2 {
+	color:#37CEA0;
+}
+
+/* logo image*/
+.logo {
+	width:20%;
+	height:auto;
+	margin:.2%;
+}
+
+/* logo footer */
+.logotxt {
+	font-size:1.8em;
+	color:#FFF;
+	text-align:center;
+	position:fixed;
+	top:0;
+	margin:0;
+	margin-top:1%;
+	width:100%;
+}
+
+.round {
+	border-radius:15px;
+	width:100px;
+	height:100px;
+}
+
+/* table containing menu */
+.content {
+	border-radius:15px;
+	background-color:#FFF;
+	padding:15px;
+	margin-top:-5%;
+	box-shadow: 0px 5px 10px #000;
+	width:100%;
+	margin-bottom:15%;
+	/*
+	margin-left:5%;
+	margin-right:5%;
+	*/
+}
+
+/* For main content divs */
+.main {
+	border-radius:15px;
+	background-color:#FFF;
+	padding:3%;
+	box-shadow: 0px 5px 10px #000;
+	width:100%;
+	height:auto;
+	margin-bottom:15%;
+	text-align:center;
+	vertical-align:center;
+	margin-top:15%;
+	margin-right:5%;
+	/*
+	margin-left:5%;
+
+	*/
+}
+
+/* table cell for food item info */
+.iteminfo {
+	text-align:left;
+	vertical-align:center;
+	padding-left:20px;
+}
+
+/* Bolded item names*/
+.itemb {
+	color:#37CEA0;
+	font-weight:400;
+	font-size:1em;
+	vertical-align:center;
+}
+
+td {
+	padding:1%;
+	vertical-align:center;
+}
+
+.btncell {
+	width:10%;
+}
+
+/* +/- button style */
+.expand {
+	width:15px;
+	height:15px;
+	vertical-align:center;
+}
+
+/* Check out button*/
+.checkout {
+	color:#ABE52C;
+	font-family:'Maven Pro', Geneva, sans-serif;
+	font-weight:bold;
+	font-size:.9em;
+}
+
+/* Back link in nav bar */
+.back {
+	color:#ABE52C;
+	font-family:'Maven Pro', Geneva, sans-serif;
+	font-weight:bold;
+	font-size:.9em;
+}
+
+/* Styles receipt list */
+.receipt {
+	text-align:right;
+	padding:1%;
+	width:50%;
+}
+
+/* For addition line at end of receipt */
+.bottom {
+	border-bottom-color:transparent;
+	border-left-color:transparent;
+	border-right-color:transparent;
+	border-top-color:#FFF;
+	border-top-width:medium;
+	border-top-style:double;
+}
+
+/* Styling for nav bar */
+nav {
+	display:inline-block;
+	padding-top:3%;
+	padding-right:5%;
+	padding-bottom:1%;
+	position:fixed;
+	left:0px;
+	width:100%;
+	height:auto;
+	vertical-align:center;
+
+	/* Sets a gradient as the image background */
+	background-image: linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -o-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -moz-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -webkit-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -ms-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(18,18,18)), color-stop(0.04, rgb(20,20,20)) color-stop(0.83, rgb(31,31,31)));
+}
+
+/* Style for the wordmark in nav bar */
+.head {
+	color:#FFF;
+	font-size:1.8em;
+}
+
+/* Styles top nav bar */
+.top {
+	top:0px;
+	height:7%;
+	text-align:right;
+}
+
+/* Styles bottom nav bar */
+.bottom {
+	bottom:0;
+	height:10%;
+	text-align:center;
+	vertical-align:bottom;
+	padding-left:2%;
+	background-image: linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -o-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -moz-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -webkit-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -ms-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(18,18,18)),
+	color-stop(0.04, rgb(20,20,20)),
+	color-stop(0.83, rgb(31,31,31))
+);
+}
+
+/* Displays copyright information */
+footer {
+	/*position:absolute;*/
+	bottom:0;
+	text-align:center;
+	font-size:.3em;
+	color:#666;
+	vertical-align:bottom;
+}
+
+

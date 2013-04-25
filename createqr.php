@@ -5,8 +5,13 @@
 <title>Generate QR</title>
 
 <style>
+
 .qr {
 	padding:20px;
+}
+
+fieldset {
+	border:0px;
 }
 
 </style>
@@ -22,6 +27,10 @@
 
 <h1> Generate QR Code </h1><br /><br />
 
+<table><tr>
+
+<td id="inputs">
+
 <!-- Allows user to customize their QR code style -->
 <form name="qrForm" id="qrForm">
 
@@ -31,10 +40,11 @@ Input URL: <input type="text" name="url" id ="url" placeholder="http://yourdomai
 
 <br />
 
+<fieldset>
 <b>QR Error Correction Level</b><br />
 <i>L is lowest level of error correction, H is highest</i><br />
 
-<fieldset>
+
 <input type="radio" name="level" value="L" checked>L</input><br />
 <input type="radio" name="level" value="M">M</input><br />
 <input type="radio" name="level" value="Q">Q</input><br />
@@ -43,9 +53,10 @@ Input URL: <input type="text" name="url" id ="url" placeholder="http://yourdomai
 
 <br />
 
+<fieldset>
 <b>QR Style</b><br />
 
-<fieldset>
+
 <input type="radio" name="style" value="standard">Square (standard QR)</input><br />
 <input type="radio" name="style" value="circle" checked>Circular</input><br />
 <input type="radio" name="style" value="roundrect">Rounded Rectangle</input><br />
@@ -54,15 +65,18 @@ Input URL: <input type="text" name="url" id ="url" placeholder="http://yourdomai
 
 <br />
 
+<fieldset>
+
 <b>QR Color</b><br />
 Select the color for your QR code.<br /><br />
 
-<fieldset>
 <input type="color" name="colordark"><br /><br />
-</fieldset>
+
 
 <i>Note that the lighter the color, the less contrast your code will<br />
 	have and the less readable it will be. Try to stick to darker colors.</i><br />
+
+</fieldset>
 
 <br /><br />
 
@@ -72,6 +86,10 @@ Select the color for your QR code.<br /><br />
 
 </form>
 
+</td>
+
+<td id="qr" style="text-align:center; width:40%">
+
 <!-- Where the QR code appears when generated -->
 <div id="qr_spot" class="qr">
 </div>
@@ -79,6 +97,10 @@ Select the color for your QR code.<br /><br />
 <br /><br />
 
 <button type="button" id="savecode" onclick="saveCode()" disabled>Save QR</button>
+
+</td>
+
+</tr></table>
 
 <br /><br /><br />
 
@@ -94,38 +116,27 @@ $('#qrForm').submit(function () {
 
 	// Used to hold form info
 	// Cleared upon form resubmission
-	var $inputs ={};
-	var values = {};
+	//var $inputs ={};
+	//var values = {};
 
-	// Puts all of the inputs from the form into an array
-	$inputs = $('#qrForm :input');
-
-
-	// Makes an associative array of values from the input array
-    $inputs.each(function() {
-        values[this.name] = $(this).val();
-    });
+	var divName = $('input[name=divname]').val();
+	var urlValue = $('input[name=url]').val();
+	var levelValue = $('input[name=level]:checked').val();
+	var styleValue = $('input[name=style]:checked').val();
+	var colorValue = $('input[name=colordark]').val();
 
     // Clears the div so that there is only 1 code shown at a time
-    clearDiv(values['divname']);
+    document.getElementById(divName).innerHTML="";
     
     // Draws the QR in the div
-	drawqr(4, values['divname'], values['url'], values['level'], values['style'], values['colordark']);
+	drawqr(4, divName, urlValue, levelValue, styleValue, colorValue);
 
 	// Makes the button to save image active
 	document.getElementById("savecode").disabled = false;
 
-
-	// NOTE SHOULD ALSO CLEAR OUT DIV IF IT IS FULL ALREADY
 	return false;
-});
 
-// Clears out the div where the QR code goes so only one
-// is shown at a time
-function clearDiv(id)
-{
-	document.getElementById(id).innerHTML="";
-}
+});
 
 // Saves the generated QR code as .png file on the user's system
 function saveCode()

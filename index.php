@@ -17,183 +17,7 @@
 
 <title>Orderve</title>
 
-<style>
-
-/* Sets the background to cover the whole window always and forever */
-html { 
-  background: url("back.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-body {
-	font-family:'Maven Pro', Geneva, sans-serif;
-	font-weight:400;
-	color:#000;
-	font-size:.8em;
-	padding-top:10%;
-}
-
-.content {
-	text-align:center;
-}
-
-/* logo image*/
-.logo {
-	width:20%;
-	height:auto;
-	margin:.2%;
-}
-
-/* logo footer */
-.logotxt {
-	font-size:1.8em;
-	color:#FFF;
-	text-align:center;
-	position:fixed;
-	top:0;
-	margin:0;
-	margin-top:1%;
-	width:100%;
-}
-
-.round {
-	border-radius:15px;
-	width:100px;
-	height:100px;
-}
-
-/* table containing menu */
-.menu {
-	border-radius:15px;
-	background-color:#FFF;
-	padding:15px;
-	margin-top:-5%;
-	/*box-shadow: 0px 5px 10px #444;*/
-	width:75%;
-	margin-bottom:16%;
-}
-
-/* table cell for food item info */
-.iteminfo {
-	text-align:left;
-	vertical-align:center;
-	padding-left:20px;
-}
-
-/* Bolded item names*/
-.itemb {
-	color:#37CEA0;
-	font-weight:400;
-	font-size:1em;
-	vertical-align:center;
-}
-
-td {
-	padding:1%;
-	vertical-align:center;
-}
-
-.btncell {
-	width:10%;
-}
-
-/* +/- button style */
-.expand {
-	width:15px;
-	height:15px;
-	vertical-align:center;
-}
-
-/* Check out button*/
-.checkout {
-	/*background:#FFF url("buttoncheck.png") no-repeat;*/
-	background:rgb(255, 255, 255) transparent;
-	background:rgba(255,0,0,0);
-	border:none;
-	vertical-align:center;
-	width:auto;
-	height:auto;
-	display:inline-block;
-	margin-right:5%;
-	list-style:none;
-	text-align:right;
-	color:#ABE52C;
-	font-weight:bold;
-	font-size:.8em;
-}
-
-/* Styling for nav bar */
-nav {
-	display:inline-block;
-	padding-top:1%;
-	padding-right:5%;
-	position:fixed;
-	left:0px;
-	width:100%;
-	height:auto;
-	vertical-align:center;
-	/*box-shadow: 0px 2px 10px #111;*/
-	background-image: linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -o-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -moz-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -webkit-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -ms-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0, rgb(18,18,18)),
-	color-stop(0.04, rgb(20,20,20)),
-	color-stop(0.83, rgb(31,31,31))
-);
-}
-
-.head {
-	/*margin-left:50%;*/
-	color:#FFF;
-	font-size:1.8em;
-}
-
-.top {
-	top:0px;
-	height:7%;
-	text-align:right;
-}
-
-.bottom {
-	bottom:0;
-	height:15%;
-	text-align:left;
-	vertical-align:center;
-	padding-left:2%;
-	background-image: linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -o-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -moz-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -webkit-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -ms-linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
-	background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0, rgb(18,18,18)),
-	color-stop(0.04, rgb(20,20,20)),
-	color-stop(0.83, rgb(31,31,31))
-);
-}
-
-/* Displays copyright information */
-footer {
-	/*position:absolute;*/
-	bottom:0;
-	text-align:center;
-	font-size:.3em;
-	color:#666;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="ordervestyle.css">
 
 </head>
 
@@ -315,19 +139,12 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	<table style="width:100%; text-align:center; vertical-align:center"><tr>
 		<td style="width:100px"></td>
 		<td style="padding:0"><span class="head">Orderve</span></td>
-		<td style="width:100px"><input type="submit" value="Checkout" form="orderform" class="checkout"/></td>
+		<td style="width:100px;"><a form="orderform" class="checkout" onclick="orderform.submit();">Checkout</a></td>
 	</tr></table>
 </nav>
 
-
-<!-- Displays logo text over nav bar
-<span class="logotxt">orderve</span> -->
-
 <!-- Page content -->
-<div id="content" class="content">
-
-<!-- Displays the Orderve logo
-<a href="controls.php"><img src="logoopaque.gif" class="logo" alt="orderve"></a><br />-->
+<div id="main">
 
 <!-- Automatically generate menu table of food options -->
 <?php
@@ -347,19 +164,17 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	
 	mysql_select_db($db, $con);
 
-	// Begin session
-
+	// Begin session if one has not started already
 	if(session_id() == '') {
-    // session isn't started
 		session_start();
 	}
 
-	// Sets session seat variable as user's loc
+	// Sets session seat variable as user's current location
 	$_SESSION['seat'] = $_GET['seat'];
 	
-	
+
 	// Begins menu table (white rounded rectangle background)
-	echo "<table align=\"center\" class=\"menu\" id=\"menu\"><tr>";
+	echo "<table align=\"center\" class=\"content\" id=\"menu\"><tr>";
 
 	// Form to submit order
 	echo "<form method=\"post\" action=\"orderinfo.php\" id=\"orderform\">";
@@ -465,19 +280,8 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
     <br /><br />
     
 <nav class="bottom">
-<table>
-	<tr><td style="display:inline-block; width:100px;">
-		<!-- Displays the Orderve logo-->
-		<a href="controls.php"><img src="logoopaque.gif" class="logo" alt="orderve"></a>
-	</td><td>
-		content<br />
-		content<br />
-	</td></tr>
-</table>
+	<footer>Copyright © 2013 Alex Reynolds</footer>
 </nav>
-    		
-
-<footer>Copyright © 2013 Alex Reynolds</footer>
 
 </div>
     

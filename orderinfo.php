@@ -10,70 +10,40 @@
 <!-- Fits view to device screen width -->
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Order Information</title>
+
+<link rel="stylesheet" type="text/css" href="ordervestyle.css">
+
 </head>
-
-
-<style>
-
-/* Sets the background to cover the whole window always and forever */
-html { 
-  background: url("back.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-body{
-	font-family:Tahoma, Geneva, sans-serif;
-	color:#FFF;
-	font-size:14px;
-}
-
-a {
-	color:#FFF;
-	text-decoration:none;
-}
-
-.receipt {
-	text-align:right;
-}
-
-/* For addition line at end of receipt */
-.bottom {
-	border-bottom-color:transparent;
-	border-left-color:transparent;
-	border-right-color:transparent;
-	border-top-color:#FFF;
-	border-top-width:medium;
-	border-top-style:double;
-}
-
-</style>
 
 <body>
 
-<div align="center" id="main">
+<!-- Nav bar with submit order button -->
+<nav class="top">
+	<table style="width:100%; text-align:center; vertical-align:center"><tr>
+		<td style="width:100px"><a class="back" href="javascript:javascript:history.go(-1)">Back</a></td>
+		<td style="padding:0"><span class="head">Orderve</span></td>
+		<td style="width:100px;"></td>
+	</tr></table>
+</nav>
 
-<br />
-<a href="index.php?seat=hammock">Home</a>
-<br /><br />
+<!-- Main page content -->
+
+<div id="main" class="main">
 
 <!-- Div is displayed when user navigates here without ordering anything -->
 <div id="goback" style="display:none;">
 
-    <p style="font-size:100px; font-weight:900; line-height:1%;">Oops!</p><br />
-    <p>You don't seem to have selected anything...<br />
-    Why don't you go back and try again?</p><br /><br />
-    <a href="javascript:javascript:history.go(-1)">Return from whence you came!</a><br /><br />
+    <h1>Oops!</h1>
+    Pick something before you try checking out!<br /><br />
+    <span style="font-style:italic; font-size:.4em; color:#555">(Surely something must have tickled your fancy?)</span><br /><br /><br />
+    <a href="javascript:javascript:history.go(-1)">Take another look</a><br /><br />
 
 </div>
 
 
-<div id="infobody">
+<div id="infobody" align="center">
 
 <h2>Order Confirmation</h2>
-<br />
 
 <!--
 Adds user to Orders list, if they are not already on there, and modifies OrderCount
@@ -103,10 +73,12 @@ $con = mysql_connect($servername,$username,$password);
 	
 	// Array to keep track of what was ordered, quantity and price
 	$myOrder = array();
+
 	// Arrays to pass to other pages, containing items ordered and quantity
 	// Using 2 separate arrays due to offset issues when attempting to use one serialized multi-dim. array
 	$foodArray = array();
 	$quanArray = array();
+
 	// Accumulators
 	$i = 0;
 	$totalcost = 0;
@@ -122,10 +94,13 @@ $con = mysql_connect($servername,$username,$password);
 		// Quantity > 0 if someone ordered something
 		if ($quantity > 0) {
 			$price = $row['FoodPrice'] * $quantity;
+
 			// Update the total cost to reflect addition of item(s)
 			$totalcost = $totalcost + $price;
+
 			// Update the total items to reflect order
 			$totalitems = $totalitems + $quantity;
+
 			// Add the item and relevant info to the array for future reference, as well as array for passing
 			$myOrder[$i] = array($quantity, $row['FoodName'], "$" . number_format($price,2));
 			$foodArray[$i] = $row['FoodName'];
@@ -136,27 +111,36 @@ $con = mysql_connect($servername,$username,$password);
 		
 	}
 	
-	// Start a session to put arrays to be passed in
-	//session_start();
+	// Puts food and quantity arrays in session variables
 	$_SESSION['foodArray'] = $foodArray;
 	$_SESSION['quanArray'] = $quanArray;
 	
 	// Prints out some statistics at top of page
-	echo "Number of items ordered: " . $totalitems;
+	echo "<i>Order is for user at " . $_POST['seat'] . "</i>";
 	echo "<br />";
-	echo "Order is for " . $_POST['seat'];
+	echo "<b>" . $totalitems . "</b>";
+		if ($totalitems > 1) {
+			echo " items ordered";
+		}
+		else {
+			echo " item ordered";
+		}
+	echo "<br />";
 	echo "<br /><br /><br />";
 	
+
 	// Prints out a table of quantity, name, and cost of all items ordered
 	
-	echo "<table text-align=\"right\">";
+	echo "<table class=\"receipt\">";
 	for ($row = 0; $row < $i; $row++)
 	{
-		echo "<tr>";
+		echo "<tr style=\"text-align:right\">";
 		for ($col = 0; $col < 3; $col++)
 		{
 			echo "<td>";
+			if ($col == 1) { echo "<span class=\"itemb\">"; }
 			echo $myOrder[$row][$col];
+			if ($col == 1) { echo "</span>"; }
 			echo "</td>";
 		}
 		echo "</tr>";
