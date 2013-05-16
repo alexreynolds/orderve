@@ -20,6 +20,15 @@ analytics.php
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Order Analytics</title>
+
+<!-- Fits view to device screen width -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Imports fonts from Google Fonts API -->
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="ordervestyle.css">
+
 </head>
 
 <body>

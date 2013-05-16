@@ -44,6 +44,17 @@ td {
 	vertical-align:center;
 }
 
+/* Changes the color of highlighted text */
+::-moz-selection {
+    background-color: #37CEA0;
+    color: #FFF;
+}
+
+::selection {
+    background-color: #37CEA0;
+    color: #FFF;
+}
+
 /* logo image*/
 .logo {
 	width:20%;
@@ -70,45 +81,40 @@ td {
 	height:100px;
 }
 
-.itemb {
-	color:#37CEA0;
-	font-weight:400;
-	font-size:1.2em;
-}
-
 /* Div wrapper for main page content */
 
 #contentwrapper {
 	width: 100%;
-	height: auto;
 }
 
-/* Main div on home page */
-#main {
-	width: 90%;
-	margin-top: 12%;
-	margin-left: auto;
+/* For main content divs */
+.main {
+	border-radius:15px;
+	background-color:#FFF;
+	text-align: center;
+	padding: 3%;
+	box-shadow: 0px 5px 10px #000;
+	width: 85%;
+	margin-top: 20%;
 	margin-right: auto;
+	margin-left: auto;
 }
 
 /* table containing menu */
 .content {
-	border-radius:15px;
-	background-color:#FFF;
-	padding:15px;
-	box-shadow: 0px 5px 10px #000;
-	width:100%;
-	margin-bottom:15%;
+	margin-top: -10%;
+	margin-bottom: auto;
 	text-align: left;
 	border-spacing: 0;
 }
 
-
-/* Names of menu categories*/
+/* Names of menu categories */
 .catetitle {
-	color: #ABE52C;
+	color: #37CEA0;
 	font-size: 1.2em;
 	width: 100%;
+	padding-top: 3%;
+	padding-bottom: 3%;
 }
 
 /* Hidden row containing options */
@@ -147,7 +153,7 @@ td {
 
 /* Descriptions of items */
 .desc {
-	color: #BBBBBB;
+	color: #444444;
 	font-size: .9em;
 }
 
@@ -167,22 +173,6 @@ td {
 	height:15px;
 }
 
-/* For main content divs */
-.main {
-	border-radius:15px;
-	background-color:#FFF;
-	padding:3%;
-	box-shadow: 0px 5px 10px #000;
-	width:100%;
-	height:auto;
-	margin-bottom:15%;
-	text-align:center;
-	vertical-align:center;
-	margin-top:15%;
-	margin-right: auto;
-	margin-left: auto;
-}
-
 
 /* Check out button*/
 .checkout {
@@ -200,21 +190,38 @@ td {
 	font-size:.9em;
 }
 
-/* Styles receipt list */
-.receipt {
-	text-align:right;
-	padding:1%;
-	width:50%;
+.recitem {
+	color:#37CEA0;
+	font-weight:400;
+	font-size: 1em;
 }
 
-/* For addition line at end of receipt */
-.bottom {
-	border-bottom-color:transparent;
-	border-left-color:transparent;
-	border-right-color:transparent;
-	border-top-color:#FFF;
-	border-top-width:medium;
-	border-top-style:double;
+/* Styles receipt table */
+#receipt {
+	text-align:right;
+	padding:2%;
+	width:60%;
+	border-spacing: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Adds line to end of receipt */
+#receipt tr:last-child td {
+	border-top: solid 1px #BBBBBB;
+}
+
+/* Div where user inputs info at orderinfo.php */
+#userinfo {
+	text-align: left;
+	margin-right: auto;
+	margin-left: auto;
+	width: 60%;
+	padding: 5%;
+}
+
+#userinfo input {
+	width: 100%;
 }
 
 /* Styling for nav bar */

@@ -25,7 +25,7 @@ menuedit.php
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <!-- Imports fonts from Google Fonts API -->
-<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" type="text/css" href="ordervestyle.css">
 

@@ -20,17 +20,13 @@ createqr.php
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Generate QR</title>
 
-<style>
+<!-- Fits view to device screen width -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-.qr {
-	padding:20px;
-}
+<!-- Imports fonts from Google Fonts API -->
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 
-fieldset {
-	border:0px;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="ordervestyle.css">
 
 <!-- Standard QR code framework created by Kazuhiko Arase and licensed by MIT -->
 <script type="text/javascript" src="qrcode.js"></script>

@@ -18,22 +18,13 @@ modify.php
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Insert Items</title>
+
+<!-- Import fonts from Google Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="ordervestyle.css">
+
 </head>
-
-<style>
-
-body {
-	text-align:center;
-	font-family:Tahoma, Geneva, sans-serif;
-	color:#000;
-	font-size:.8em;
-}
-
-.round {
-	border-radius:15px;
-}
-
-</style>
 
 <body>
 

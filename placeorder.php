@@ -17,22 +17,16 @@ placeorder.php
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Thanks for Your Order!</title>
+
+<!-- Fits view to device screen width -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Imports fonts from Google Fonts API -->
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="ordervestyle.css">
+
 </head>
-
-<style>
-
-body{
-	font-family:Tahoma, Geneva, sans-serif;
-	color:#FFF;
-	background-color:#0CC;
-	font-size:14px;
-}
-
-a {
-	color:#FFF;
-	text-decoration:none;
-}
-</style>
 
 <body>
 

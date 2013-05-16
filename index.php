@@ -21,7 +21,7 @@ index.php
 <head>
 
 <!-- Imports fonts from Google Fonts API -->
-<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -40,111 +40,6 @@ index.php
 <?php include 'tablecreation.php' ?>
 
 
-<script>
-
-// Dictates what to do when device orientation changes
-// Note that on some tablets, landscape mode is considered standard orientation,
-// 	so must take that into consideration for orientation calculations
-function handleOrientation() {
-
-// Find standard screen orientation and adjust orientation accordingly
-/*int normOrientation = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
-
-if (naturalOrientation == Surface.ROTATION_0)
-{
-	// Do nothing
-}
-else if (naturalOrientation == Surface.ROTATION_90)
-{
-    orientation += 90;
-}
-else if (naturalOrientation == Surface.ROTATION_180)
-{
-    orientation += 180;
-}
-else if (naturalOrientation == Surface.ROTATION_270)
-{
-    orientation += 270;
-}
-*/
-// Simpler attempt to fix orientation
-if (orientation == 0 && window.width > window.height) { orientation += 90; }
-
-// Keeps the orientation angle [0,360]
-if (orientation > 360)
-{
-    orientation -= 360;
-}
-
-// Actions related to orientation
-if (orientation == 0) {
-	// Portrait
-  alert('portrait');
-}
-else if (orientation == 90) {
-	// Landscape
-  alert('landscape');
-}
-else if (orientation == -90) {
-  // Landscape
-  alert('landscape');
-}
-else if (orientation == 180) {
-  // Upside down portrait
-}
-else {
-	// Do nothing, whack angles
-}
-}
-
-// Checks to see if there is location information already
-// If not, prompt the user to enter it and then continue on
-
-var url = window.location.href;
-
-// If there is no location information in the url already
-if (url.indexOf("?seat=") == -1) {
-
-	// Prompts the user to enter their location
-	var loc = prompt("Please enter your location.\nex. Room 123");
-
-	// Redirects to new url with parameter
-	window.location.search += ("?seat=" + loc);
-}
-
-// Tests to see if a mobile device, and which browser is being used
-var isMobile = {
-    Android: function() {
-        return navigator.userAgent.match(/Android/i);
-    },
-    BlackBerry: function() {
-        return navigator.userAgent.match(/BlackBerry/i);
-    },
-    iOS: function() {
-        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-    },
-    Opera: function() {
-        return navigator.userAgent.match(/Opera Mini/i);
-    },
-    Windows: function() {
-        return navigator.userAgent.match(/IEMobile/i);
-    },
-    any: function() {
-        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-    }
-};
-
-/* TESTING IT WORKS COOL
-
-// SHOULD HAVE SO IF NOT MOBILE DO SOMETHING 
-
-if ( isMobile.any() ) { alert('MOBILE'); }
-if ( isMobile.Android() ) { alert('ANDROID'); }
-if ( isMobile.Opera() ) { alert('OPERA'); }
-*/
-
-</script>
-
 <!-- Nav bar with submit order button -->
 <nav class="top">
 	<table style="width:100%; text-align:center; vertical-align: middle;"><tr>
@@ -157,7 +52,22 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 <div id="contentwrapper">
 
 <!-- Page content -->
-<div id="main">
+<div class="main">
+
+<!-- Begins menu table -->
+<table class="content" id="menu">
+
+<!-- Form to submit order -->
+<form method="post" action="orderinfo.php" id="orderform">
+
+<!-- Start APPETIZERS section -->
+<tr>
+	<td align="left" class="catetitle">Appetizers</td>
+	<td align="right">
+	<img class="expand" id="appetizerbtnexpand" src="buttonplus2.png" onClick="toggleDisplay('appetizers', 'appetizerbtnexpand')">
+	<img class="expand" id="appetizerbtncontract" src="buttonminus2.png" onClick="toggleDisplay('appetizers', 'appetizerbtncontract')" style="display:none;">
+	</td>
+</tr>
 
 <!-- Automatically generate menu table of food options -->
 <?php
@@ -172,7 +82,7 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	// If the server cannot connect, error.
 	if (!$con)
   	{
-  	die('Could not connect: ' . mysql_error());
+  		die('Could not connect: ' . mysql_error());
   	}
 	
 	mysql_select_db($db, $con);
@@ -185,8 +95,8 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	// Sets session seat variable as user's current location
 	$_SESSION['seat'] = $_GET['seat'];
 	
-
-	// Begins menu table (white rounded rectangle background)
+	/*
+	// Begins menu table
 	echo "<table class=\"content\" id=\"menu\"><tr>";
 
 	// Form to submit order
@@ -202,7 +112,7 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 			<img class=\"expand\" id=\"appetizerbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('appetizers', 'appetizerbtncontract')\" style=\"display:none;\">
 			</td>
 			</tr>";
-	
+	*/
 
 	// Begins appetizer table (contains all selections for category)
 	echo "<tr id=\"appetizers\" style=\"display:none;\"><td style=\"width:50%;\">";
@@ -403,6 +313,108 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 		return false;
 
 	}
+
+
+	// Dictates what to do when device orientation changes
+	// Note that on some tablets, landscape mode is considered standard orientation,
+	// 	so must take that into consideration for orientation calculations
+	function handleOrientation() {
+
+	// Find standard screen orientation and adjust orientation accordingly
+	/*int normOrientation = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
+
+	if (naturalOrientation == Surface.ROTATION_0)
+	{
+		// Do nothing
+	}
+	else if (naturalOrientation == Surface.ROTATION_90)
+	{
+	    orientation += 90;
+	}
+	else if (naturalOrientation == Surface.ROTATION_180)
+	{
+	    orientation += 180;
+	}
+	else if (naturalOrientation == Surface.ROTATION_270)
+	{
+	    orientation += 270;
+	}
+	*/
+	// Simpler attempt to fix orientation
+	if (orientation == 0 && window.width > window.height) { orientation += 90; }
+
+	// Keeps the orientation angle [0,360]
+	if (orientation > 360)
+	{
+	    orientation -= 360;
+	}
+
+	// Actions related to orientation
+	if (orientation == 0) {
+		// Portrait
+	  alert('portrait');
+	}
+	else if (orientation == 90) {
+		// Landscape
+	  alert('landscape');
+	}
+	else if (orientation == -90) {
+	  // Landscape
+	  alert('landscape');
+	}
+	else if (orientation == 180) {
+	  // Upside down portrait
+	}
+	else {
+		// Do nothing, whack angles
+	}
+	}
+
+	// Checks to see if there is location information already
+	// If not, prompt the user to enter it and then continue on
+
+	var url = window.location.href;
+
+	// If there is no location information in the url already
+	if (url.indexOf("?seat=") == -1) {
+
+		// Prompts the user to enter their location
+		var loc = prompt("Please enter your location.\nex. Room 123");
+
+		// Redirects to new url with parameter
+		window.location.search += ("?seat=" + loc);
+	}
+
+	// Tests to see if a mobile device, and which browser is being used
+	var isMobile = {
+	    Android: function() {
+	        return navigator.userAgent.match(/Android/i);
+	    },
+	    BlackBerry: function() {
+	        return navigator.userAgent.match(/BlackBerry/i);
+	    },
+	    iOS: function() {
+	        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+	    },
+	    Opera: function() {
+	        return navigator.userAgent.match(/Opera Mini/i);
+	    },
+	    Windows: function() {
+	        return navigator.userAgent.match(/IEMobile/i);
+	    },
+	    any: function() {
+	        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+	    }
+	};
+
+	/* TESTING IT WORKS COOL
+
+	// SHOULD HAVE SO IF NOT MOBILE DO SOMETHING 
+
+	if ( isMobile.any() ) { alert('MOBILE'); }
+	if ( isMobile.Android() ) { alert('ANDROID'); }
+	if ( isMobile.Opera() ) { alert('OPERA'); }
+	*/
 	
 	</script>
 
