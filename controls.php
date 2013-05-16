@@ -63,7 +63,7 @@ controls.php
         <li class="selected"><a href="controls.php">Controls Main</a></li>
 
         <br><br>
-        
+
         <li><a href="index.php">Back to Home</a></li>
         <li><a href="logout.php">Log out</a></li>
     </ul>
@@ -74,11 +74,6 @@ controls.php
 <div class="controlsmain">
 
 <img src="logo.png" class="logo"><h1>Master Controls</h1>
-<!--<table style="vertical-align: middle;"><tr>
-    <td style="width: 25%;"><img src="logo.png" class="logo"></td>
-    <td style="text-align: left;"><h1>Master Controls</h1></td>
-</table>
--->
 
 <table id="tablecontrols">
     <tr>

@@ -58,6 +58,13 @@ mysql_select_db($db, $con);
 if ($_POST['action']=='insert') {
 	
 	$itemname = $_POST['foodname'];
+	$veg = "";
+	if (!isset($_POST['veg'])) {
+		$veg = 0;
+	}
+	else {
+		$veg = 1;
+	}
 	$result = mysql_query("SELECT * FROM Foods WHERE foodname='$itemname'");
 	$num_rows = mysql_num_rows($result);
 
@@ -68,8 +75,8 @@ if ($_POST['action']=='insert') {
 	} 
 	else 	// Otherwise, insert item into table accordingly
 	{
-		$sql="INSERT INTO Foods (FoodName, FoodPrice, OrderCount, ImageURL, Category, Veg)
-		VALUES ('$_POST[foodname]','$_POST[foodprice]', 0, '$_POST[imageurl]', '$_POST[category]', '$_POST[veg]')";
+		$sql="INSERT INTO Foods (FoodName, FoodPrice, OrderCount, Category, Veg, description)
+		VALUES ('$_POST[foodname]','$_POST[foodprice]', 0, '$_POST[category]', '$veg', '$_POST[desc]')";
 
 	// Error catch
 	if (!mysql_query($sql,$con))
@@ -86,15 +93,16 @@ if ($_POST['action']=='insert') {
 // REMOVING an item from Foods table
 else if ($_POST['action']=='remove') {
 	
-	$itemname = $_POST['foodname'];
-	$result = mysql_query("SELECT * FROM Foods WHERE foodname='$itemname'");
+	// Itemname is the foodID
+	$itemname = $_POST['itemname'];
+	$result = mysql_query("SELECT * FROM Foods WHERE foodID='$itemname'");
 	$num_rows = mysql_num_rows($result);
 
 	// If true, there are already instances of the item in the table. Can be removed.
 	if ($num_rows)
 		{
 				
-			$sql="DELETE FROM Foods WHERE FoodName='" . $_POST['foodname'] . "'";
+			$sql="DELETE FROM Foods WHERE foodID='$itemname'";
 			
 			// Error catch
 			if (!mysql_query($sql, $con))
@@ -103,12 +111,110 @@ else if ($_POST['action']=='remove') {
 			}
 			
 			echo "<img src=\"thumbsup.jpg\" class=\"round\"><br/><br/>";
-			echo "Removed " . $_POST['foodname'] . " from the menu.";
+			echo "Removed item from the menu.";
 			
 		}
 	else // There is no instance of item in table. Cannot remove.
 		{
-			echo "There is no instance of " . $_POST['foodname'] . " in the menu to remove. Sorry.";
+			echo "There is no instance of " . $_POST['itemname'] . " in the menu to remove. Sorry.";
+		}
+
+}
+
+// EDITING an item in Foods table
+else if ($_POST['action']=='edit') {
+	
+	// Itemname = foodID
+	$itemname = $_POST['itemname'];
+	$result = mysql_query("SELECT * FROM Foods WHERE foodID='$itemname'");
+	$num_rows = mysql_num_rows($result);
+
+	// Set veg variable
+	$veg = "";
+	if (!isset($_POST['veg'])) {
+		$veg = 0;
+	}
+	else {
+		$veg = 1;
+	}
+
+	// If true, there are already instances of the item in the table. Can be edited
+	if ($num_rows)
+		{
+			// If name must be changed
+			if (isset($_POST['foodname'])) {
+				$newname = $_POST['foodname'];
+
+				if (strlen($newname) > 1) {
+					$sql = "UPDATE Foods SET FoodName='$newname' WHERE foodID='$itemname'";
+
+					// Error catch
+					if (!mysql_query($sql, $con))
+					{
+						die('Error: ' . mysql_error());
+					}
+				}
+
+			}
+			// If price must be changed
+			if (isset($_POST['foodprice'])) {
+				$newprice = $_POST['foodprice'];
+
+				if (strlen($newprice) > 1) {
+					$sql = "UPDATE Foods SET FoodPrice='$newprice' WHERE foodID='$itemname'";
+
+					// Error catch
+					if (!mysql_query($sql, $con))
+					{
+						die('Error: ' . mysql_error() . "PRICE: " . $newprice . ".");
+					}
+				}
+			}
+			// If category must be changed
+			if (isset($_POST['category'])) {
+				$newcategory = $_POST['category'];
+
+				if (strlen($newcategory) > 1) {
+					$sql = "UPDATE Foods SET Category='$newcategory' WHERE foodID='$itemname'";
+
+					// Error catch
+					if (!mysql_query($sql, $con))
+					{
+						die('Error: ' . mysql_error());
+					}
+				}
+			}
+			// If description must be changed
+			if (isset($_POST['desc'])) {
+				$newdesc = $_POST['desc'];
+
+				if (strlen($newdesc) > 1) {
+					$sql = "UPDATE Foods SET description='$newdesc' WHERE foodID='$itemname'";
+
+					// Error catch
+					if (!mysql_query($sql, $con))
+					{
+						die('Error: ' . mysql_error());
+					}
+				}
+			}
+
+			// Set vegetarian boolean to given
+			$sql = "UPDATE Foods SET Veg='$veg' WHERE foodID='$itemname'";
+
+				// Error catch
+				if (!mysql_query($sql, $con))
+				{
+					die('Error: ' . mysql_error());
+				}
+			
+			echo "<img src=\"thumbsup.jpg\" class=\"round\"><br/><br/>";
+			echo "Edited menu item.";
+			
+		}
+	else // There is no instance of item in table. Cannot remove.
+		{
+			echo "There is no instance of chosen item in the menu to edit. Sorry.";
 		}
 
 }
@@ -167,7 +273,7 @@ mysql_close($con);
 <br /><br />
 
 <!-- Goes back to menu edit page -->
-<a href="controls.php">Back to control panel</a>
+<a href="menuedit.php">Back to menu edit</a>
 
 </body>
 </html>

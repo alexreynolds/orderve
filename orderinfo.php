@@ -214,17 +214,17 @@ $con = mysql_connect($servername,$username,$password);
 <option value="N/A">N/A</option>
 </select>
 </div>
-<input type="text" name="firstname" value="First Name" onclick="clearValue(this)" required/> *
+<input type="text" name="firstname" value="First Name" onclick="clearValue(this)" required/>
 <input type="text" name="lastname" value="Last Name" onclick="clearValue(this)"/></td>
 </tr><tr>
 <td>A telephone number, just in case?:</td>
-<td><input type="tel" name="usertel" value="(XXX) XXX - XXXX" onclick="clearValue(this)"/></td>
+<td><input type="tel" name="usertel" placeholder="ex. (XXX) XXX - XXXX"/></td>
 </tr><tr>
 <td>Why not an e-mail as well? You never know:</td>
-<td><input type="email" name="usermail" value="username@mail.com" onclick="clearValue(this)"/></td>
+<td><input type="email" name="usermail" placeholder="ex. username@mail.com"/></td>
 </tr><tr>
 <td>Comments about order:</td>
-<td><input type="text" name="comments" value="Type your comments here." onClick="clearValue(this)"/></td>
+<td><input type="text" name="comments" placeholder="Type your comments here."/></td>
 </tr>
 </table>
 
