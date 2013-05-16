@@ -135,9 +135,8 @@ login.php
 
 <div class="main" id="logincontent">
 
-    <h1>Admins only!</h1>
-    <span style="text-align: right;"
-    <h2>Login</h2> 
+    <h2>Speak, admin, and enter.</h2>
+    <div>
     <form action="login.php" method="post"> 
         Username<br /> 
         <input type="text" name="username" value="<?php echo $submitted_username; ?>" /> 
@@ -147,7 +146,7 @@ login.php
         <br /><br /> 
         <input type="submit" value="Login" /> 
     </form> 
-</span>
+    </div>
 
 <!-- End main content div -->
 </div>

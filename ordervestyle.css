@@ -34,7 +34,7 @@ h1 {
 	font-size:3em;
 	margin-bottom: 2%;
 	margin-top: 2%;
-	letter-spacing: ;
+	letter-spacing: -1px;
 }
 
 h2 {
@@ -231,15 +231,27 @@ nav {
 
 /* Main div of login page */
 #logincontent {
-	width: 50%;
+	width: 60%;
 	margin-right: auto;
 	margin-left: auto;
 }
 
-#logincontent td {
+#logincontent div {
 	text-align: left;
 	width: 50%;
 	padding: 5%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+}
+
+#logincontent input {
+	width: 100%;
+}
+
+#logincontent h2 {
+	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 /* Styles side nav bar (for control panel) */
