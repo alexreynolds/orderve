@@ -1,3 +1,19 @@
+<!--
+
+Orderve
+Copyright (c) 2013 Alex Reynolds
+
+createqr.php
+
+    - A page to customize and generate QR codes for the web admin
+    - A private page
+
+    TODO:
+	- Make it possible to download code files
+	- Make it possible to create QRs for a list of locations with numerical endings
+
+-->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

@@ -1,3 +1,14 @@
+<!--
+
+Orderve
+Copyright (c) 2013 Alex Reynolds
+
+common.php
+
+    - Used to establish a connection to the mySQL database
+
+-->
+
 <?php 
 
     // Database connection information
@@ -60,6 +71,6 @@
     // Begin session
     session_start(); 
 
-    // Note that it is a good practice to NOT end your PHP files with a closing PHP tag. 
+    // It is a good practice to NOT end your PHP files with a closing PHP tag. 
     // This prevents trailing newlines on the file from being included in your output, 
     // which can cause problems with redirecting users.

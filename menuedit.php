@@ -1,3 +1,19 @@
+<!--
+
+Orderve
+Copyright (c) 2013 Alex Reynolds
+
+menuedit.php
+
+    - Page for the administrator to edit current menu offerings
+    - A private page
+
+    TODO:
+    - Style
+
+-->
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -5,42 +21,13 @@
 <title>Manage Menu</title>
 </head>
 
-<style type="text/css">
+<!-- Fits view to device screen width -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-body {
-	text-align:center;
-	font-family:Tahoma, Geneva, sans-serif;
-	color:#000;
-	font-size:10px;
-}
+<!-- Imports fonts from Google Fonts API -->
+<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 
-table {
-	
-	text-align:center;
-}
-
-td {
-	vertical-align:top;
-}
-
-.round {
-	border-radius:15px;
-}
-
-td {
-	padding:10px;
-}
-
-img {
-	width:50%;
-	height:50%;	
-}
-
-.menu {
-  vertical-align:center;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="ordervestyle.css">
 
 <script type="text/javascript">
 	
@@ -80,6 +67,26 @@ img {
         die("Redirecting to login.php"); 
     } 
 ?> 
+
+<!-- Nav bar for control panel-->
+<nav id="navside">
+    <span class="head" style="color:#ABE52C;">Control Panel</span>
+
+    <br><br>
+
+    <ul>
+        <li><a href="pending.php" style="font-weight: 700; font-size: 1.2em;">Pending Orders</a></li>
+        <li><a href="menuedit.php">Edit Menu</a></li>
+        <li><a href="createqr.php">Generate QR</a></li>
+        <li><a href="analytics.php">Order Analytics</a></li>
+        <li class="selected"><a href="controls.php">Controls Main</a></li>
+
+        <br><br>
+        
+        <li><a href="index.php">Back to Home</a></li>
+        <li><a href="logout.php">Log out</a></li>
+    </ul>
+</nav>
 
 <div id="main" align="center">
 
@@ -179,11 +186,11 @@ Image URL: <input type="text" name="imageurl"> <br /><br />
 Dish Type:
 <select name="category" id="category" onChange="getCategory()" required>
 <option value="select" disabled>Select a type</option>
-<option value="Drink">Drink</option>
-<option value="Appetizer">Appetizer</option>
-<option value="Salad">Salad</option>
-<option value="Main">Main</option>
-<option value="Dessert">Dessert</option>
+<option value="drink">Drink</option>
+<option value="appetizer">Appetizer</option>
+<option value="salad">Salad</option>
+<option value="main">Main</option>
+<option value="dessert">Dessert</option>
 </select>
 <br /><br />
 Vegetarian?: <input type="checkbox" id="veg" name="veg" value="1">Yes <br /><br />

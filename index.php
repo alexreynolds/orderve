@@ -1,6 +1,19 @@
-<!-- HOME PAGE
-	WRITTEN BY ALEX REYNOLDS, 2013
+<!--
+
+Orderve
+Copyright (c) 2013 Alex Reynolds
+
+index.php
+
+    - The home page for the app
+    - The available menu is displayed, where users can pick items of quantities up to 20 to add to cart
+
+    TODO:
+    - Add option for vegetarian fiter
+    - Add live updating receipt at bottom of page
+
 -->
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php session_start(); ?>
@@ -132,16 +145,16 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 
 </script>
 
-
-
 <!-- Nav bar with submit order button -->
 <nav class="top">
-	<table style="width:100%; text-align:center; vertical-align:center"><tr>
+	<table style="width:100%; text-align:center; vertical-align:middle"><tr>
 		<td style="width:100px"></td>
 		<td style="padding:0"><span class="head">Orderve</span></td>
 		<td style="width:100px;"><a form="orderform" class="checkout" onclick="orderform.submit();">Checkout</a></td>
 	</tr></table>
 </nav>
+
+<div id="contentwrapper">
 
 <!-- Page content -->
 <div id="main">
@@ -179,24 +192,41 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	// Form to submit order
 	echo "<form method=\"post\" action=\"orderinfo.php\" id=\"orderform\">";
 
-	// DRINKS section
-	echo "<td align=\"left\"><div class=\"itemb\">Drinks</div></td>
-			<td align=\"right\">
-			<img class=\"expand\" id=\"drinkbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('drinks', 'drinkbtnexpand')\">
-			<img class=\"expand\" id=\"drinkbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('drinks', 'drinkbtncontract')\"  style=\"display:none;\">
-			</td></tr>";
-			
-	// Begins drinks table
-	echo "<tr id=\"drinks\" style=\"display:none;\"><td><table>";
 
-	// Selects all drinks from Foods table
-	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'drink'");
+	// APPETIZERS section
+	
+	echo "<td align=\"left\"><div class=\"itemb\">Appetizers</div></td><td align=\"right\">
+			<img class=\"expand\" id=\"appetizerbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('appetizers', 'appetizerbtnexpand')\">
+			<img class=\"expand\" id=\"appetizerbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('appetizers', 'appetizerbtncontract')\" style=\"display:none;\"></td></tr>";
+	
 
-	// Generates drinks options table
+	// Begins salad table (contains all selections for category)
+	echo "<tr id=\"appetizers\" style=\"display:none;\"><td><table>";
+
+	// Selects main course items from Foods table
+	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'salad'");
+
+	// Generates main course options table
 	optionsTableGen($result);
 
 
-	/* === SECTION DIVIDER BETWEEN DRINKS AND MAIN COURSES === */
+
+	// SALADS section
+	
+	echo "<td align=\"left\"><div class=\"itemb\">Soups and Salads</div></td><td align=\"right\">
+			<img class=\"expand\" id=\"saladbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('salads', 'saladbtnexpand')\">
+			<img class=\"expand\" id=\"saladbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('salads', 'saladbtncontract')\" style=\"display:none;\"></td></tr>";
+	
+
+	// Begins salad table (contains all selections for category)
+	echo "<tr id=\"salads\" style=\"display:none;\"><td><table>";
+
+	// Selects main course items from Foods table
+	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'salad'");
+
+	// Generates salad options table
+	optionsTableGen($result);
+
 
 
 	// MAIN COURSES section
@@ -215,9 +245,24 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	// Generates main course options table
 	optionsTableGen($result);
 
-	// Button to submit order
-	// *** HAS BEEN MOVED TO THE TOP NAV BAR ***
-	// echo "<tr><td align=\"right\"><input type=\"submit\" value=\"Place Order\"></td></tr>";
+
+
+
+	// DRINKS section
+	echo "<td align=\"left\"><div class=\"itemb\">Drinks</div></td>
+			<td align=\"right\">
+			<img class=\"expand\" id=\"drinkbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('drinks', 'drinkbtnexpand')\">
+			<img class=\"expand\" id=\"drinkbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('drinks', 'drinkbtncontract')\"  style=\"display:none;\">
+			</td></tr>";
+			
+	// Begins drinks table
+	echo "<tr id=\"drinks\" style=\"display:none;\"><td><table>";
+
+	// Selects all drinks from Foods table
+	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'drink'");
+
+	// Generates drinks options table
+	optionsTableGen($result);
 
 	// Finish form
 	echo "</form><br /><br />";
@@ -233,23 +278,29 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	function optionsTableGen($res) {
 
 		while ($row = mysql_fetch_array($res))
-		{
-			// 3 items per row shown, start new row if current is filled
-			//if ($i>3) { echo "</tr><tr>"; $i=1; }
-			
+		{	
 			// Begin table cell
 			echo "<tr><td>";
 
 			// Begin table with item info. LHS is item image, RHS is info
 			echo "<table><tr>";
 				// LHS
+				/*
 				echo "<td>";
 				// Draws image
 				echo "<img src=\"" . $row['ImageURL'] . "\" class=\"round\"><br/><br/>";
-				echo "</td><td class=\"iteminfo\">";
+				echo "</td>
+				*/
+				echo "<td class=\"iteminfo\">";
 				// RHS
 				// Name of food item
-				echo "<div class=\"itemb\">" . $row['FoodName'] . "</div>";
+				echo "<div class=\"itemb\">" . $row['FoodName'];
+					// If the item is vegetarian, display the vegetarian icon next to the item name
+					if ($row['Veg'] == '1')
+					{
+						echo "  <img src=\"vegicon.png\" class=\"vegicon\">";
+					}
+				echo "</div>";
 				// Price of food item
 				echo "$" . number_format($row['FoodPrice'],2) . "<br />";
 				// Quantity of item
@@ -276,20 +327,24 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 
 	?>
     
-    
-    <br /><br />
+<!-- End content div -->
+</div>
+
+<!-- End content wrapper -->
+</div>
     
 <nav class="bottom">
-	<footer>Copyright © 2013 Alex Reynolds</footer>
+	<footer><a href="controls.php">Control Panel</a><br><br>
+			Copyright © 2013 Alex Reynolds</footer>
 </nav>
 
-</div>
+
     
     
     <script>
 
 	// Toggles the display of an element (for dropdown menus)
-	function toggleDisplay(id,btn)
+	function toggleDisplay(id, btn)
 	{
 		// Toggles display value (hidden vs. block)
 		var item = document.getElementById(id);
@@ -304,10 +359,18 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 		
 		// FIND A WAY TO FIND THE LAST 9 CHARS IN STRING FOR TESTING
 
-		if (btn == "drinkbtnexpand")
+		if (btn == "drinkbtnexpand") 
 			document.getElementById('drinkbtncontract').style.display = "block";
 		else if (btn == "drinkbtncontract")
 			document.getElementById('drinkbtnexpand').style.display = "block";
+		else if (btn == "appetizerbtnexpand")
+			document.getElementById('appetizerbtncontract').style.display = "block";
+		else if (btn ==	"appetizerbtncontract")
+			document.getElementById('appetizerbtnexpand').style.display = "block";
+		else if (btn == "saladbtnexpand")
+			document.getElementById('saladbtncontract').style.display = "block";
+		else if (btn ==	"saladbtncontract")
+			document.getElementById('saladbtnexpand').style.display = "block";
 		else if (btn == "mainbtnexpand")
 			document.getElementById('mainbtncontract').style.display = "block";
 		else if (btn ==	"mainbtncontract")

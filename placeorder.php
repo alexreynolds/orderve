@@ -1,3 +1,17 @@
+<!--
+
+Orderve
+Copyright (c) 2013 Alex Reynolds
+
+placeorder.php
+
+    - Order confirmation page shown once the user has placed their order
+
+    TODO:
+    - Style
+
+-->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -51,7 +65,7 @@ $con = mysql_connect($servername,$username,$password);
 	// Error catch
 		if (!mysql_query($sql,$con))
 		{
-			die('Error: ' . mysql_error());
+			die('Error: ' . mysql_error() . $sql);
 		}
 
 	// Gets the assigned orderID from pending (for orders)
@@ -81,8 +95,14 @@ $con = mysql_connect($servername,$username,$password);
 				$count = $row['OrderCount'] + $quanArray[$i];
 
 				// Inserts food order and quantity into Orders table
-				mysql_query("INSERT INTO Orders (orderID, foodID, count)
-					VALUES ('$orderID', '$foodname', '$quantity')");
+				$sql="INSERT INTO Orders (orderID, foodID, count)
+					VALUES ('$orderID', '$foodname', '$quantity')";
+
+				// Error catch
+				if (!mysql_query($sql,$con))
+				{
+					die('Error: ' . mysql_error() . $sql);
+				}
 				
 				// Updates OrderCount value in Foods table
 				mysql_query("UPDATE Foods SET OrderCount=$count WHERE FoodName='$foodname'");
@@ -124,7 +144,7 @@ $con = mysql_connect($servername,$username,$password);
 	// Error catch
 		if (!mysql_query($sql,$con))
 		{
-			die('Error: ' . mysql_error());
+			die('Error: ' . mysql_error() . $sql);
 		}
 	}
 	
@@ -176,7 +196,7 @@ $con = mysql_connect($servername,$username,$password);
 	*/
 
 	// Gets rid of seat variable in session so it's not saved too long
-	unset($_SESSION['seat']); 
+	//unset($_SESSION['seat']); 
 	
 ?>
 

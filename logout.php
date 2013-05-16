@@ -1,3 +1,15 @@
+<!--
+
+Orderve
+Copyright (c) 2013 Alex Reynolds
+
+logout.php
+
+    - PHP script to log out the current administrator
+
+-->
+
+
 <?php 
 
     // Connects to database, begins session

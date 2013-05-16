@@ -1,8 +1,32 @@
+<!--
+
+Orderve
+Copyright (c) 2013 Alex Reynolds
+
+login.php
+
+    - Page for administrator to log in before proceeding to private controls
+
+    TODO:
+    - Style
+
+-->
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Secure Area Login</title>
+
+<!-- Fits view to device screen width -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- Imports fonts from Google Fonts API -->
+<link href='http://fonts.googleapis.com/css?family=Economica|Merriweather+Sans:400,300|Maven+Pro:400,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="ordervestyle.css">
+
 </head>
 
 <body>
@@ -98,24 +122,38 @@
      
 ?> 
 
-<h1>YOU MUST BE SPECIAL TO ACCESS THIS AREA</h1><br /><br />
+<!-- Nav bar with submit order button -->
+<nav class="top">
+    <table style="width:100%; text-align:center; vertical-align:middle"><tr>
+        <td style="width:50px"><a class="back" href="javascript:javascript:history.go(-1)">Back</a></td>
+        <td style="padding:0"><span class="head">Orderve</span></td>
+        <td style="width:50px;"></td>
+    </tr></table>
+</nav>
+
+<div id="contentwrapper">
+
+<div class="main" id="logincontent">
+
+<h1>Admins only!</h1>
 
 <h2>Login</h2> 
 <form action="login.php" method="post"> 
-    Username:<br /> 
+    Username<br /> 
     <input type="text" name="username" value="<?php echo $submitted_username; ?>" /> 
     <br /><br /> 
-    Password:<br /> 
+    Password<br /> 
     <input type="password" name="password" value="" /> 
     <br /><br /> 
     <input type="submit" value="Login" /> 
 </form> 
 
 
+<!-- End main content div -->
+</div>
 
-
-<br /><br />
-<a href="index.php?seat=THRONE">Back to main</a>
+<!-- End wrapper div -->
+</div>
 
 </body>
 </html>

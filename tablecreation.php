@@ -31,7 +31,8 @@ FoodName varchar(30),
 FoodPrice double,
 OrderCount int,
 ImageURL varchar(30),
-Veg tinyint(1)
+Veg tinyint(1),
+Description varchar(300)
 )";
 
 // Executes Foods table creation

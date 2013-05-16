@@ -1,3 +1,20 @@
+<!--
+
+Orderve
+Copyright (c) 2013 Alex Reynolds
+
+orderinfo.php
+
+    - The page shown once the user opts to check out
+    - Lists what they have ordered along with total price for checking purposes
+    - User inputs personal information here
+
+    TODO:
+    - Integrate e-commerce payment method
+
+-->
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,7 +34,7 @@
 
 <body>
 
-<!-- Nav bar with submit order button -->
+<!-- Nav bar -->
 <nav class="top">
 	<table style="width:100%; text-align:center; vertical-align:center"><tr>
 		<td style="width:100px"><a class="back" href="javascript:javascript:history.go(-1)">Back</a></td>
@@ -65,6 +82,11 @@ $con = mysql_connect($servername,$username,$password);
   	}
 
 	mysql_select_db($db, $con);
+
+	// If a session hasn't been started for whatever reason, start.
+	if(session_id() == '') {
+    	session_start();
+	}
 	
 
 // === ORDER RECEIPT GENERATION === //
@@ -241,8 +263,8 @@ function clearValue(instance)
 // A method of getting the current time so that the orders may be timestamped
 // 	Note: (currentDate.getMonth() + 1) because months are counted starting with 0.
 var currentDate = new Date();
-var dateTime = currentDate.getDate() + "/" + (currentDate.getMonth() + 1)
-				+ "/" + currentDate.getFullYear() + "@" + currentDate.getHours() + ":" +
+var dateTime = currentDate.getDate() + "." + (currentDate.getMonth() + 1)
+				+ "@" + currentDate.getHours() + ":" +
 				currentDate.getMinutes();
 				
 // Sets the value of the time hidden input to the current date and time
