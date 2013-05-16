@@ -135,19 +135,19 @@ login.php
 
 <div class="main" id="logincontent">
 
-<h1>Admins only!</h1>
-
-<h2>Login</h2> 
-<form action="login.php" method="post"> 
-    Username<br /> 
-    <input type="text" name="username" value="<?php echo $submitted_username; ?>" /> 
-    <br /><br /> 
-    Password<br /> 
-    <input type="password" name="password" value="" /> 
-    <br /><br /> 
-    <input type="submit" value="Login" /> 
-</form> 
-
+    <h1>Admins only!</h1>
+    <span style="text-align: right;"
+    <h2>Login</h2> 
+    <form action="login.php" method="post"> 
+        Username<br /> 
+        <input type="text" name="username" value="<?php echo $submitted_username; ?>" /> 
+        <br /><br /> 
+        Password<br /> 
+        <input type="password" name="password" value="" /> 
+        <br /><br /> 
+        <input type="submit" value="Login" /> 
+    </form> 
+</span>
 
 <!-- End main content div -->
 </div>
