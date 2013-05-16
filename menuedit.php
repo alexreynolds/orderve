@@ -64,6 +64,14 @@ menuedit.php
     document.getElementById("itemname").value = name.options[name.selectedIndex].value;
     return document.getElementById("itemname").value;
   }
+
+  // Gets chosen veg value from list
+  function getVeg(id)
+  {
+    var vegval = document.getElementById(id);
+    document.getElementById(id).value = vegval.options[vegval.selectedIndex].value;
+    return document.getElementById(id).value;
+  }
 	
 </script>
 
@@ -118,7 +126,8 @@ menuedit.php
   <th id="price">Price</th>
   <th id="count">Order Count</th>
   <th id="cat">Category</th>
-  <th id="veg">Vegetarian?</th>
+  <th id="veg">Vegetarian</th>
+  <th id="description">Description</th>
 </tr>
 
 <!-- Print out contents of menu from database -->
@@ -161,6 +170,7 @@ while($row = mysql_fetch_array($result))
     	echo "No";
     }
     echo "</td>";
+    echo "<td>" . $row['description'] . "</td>";
     echo "</tr>";
   }
 echo "</table>";
@@ -193,8 +203,13 @@ Form data is sent to modify.php
   <option value="dessert">Dessert</option>
   </select>
   <br /><br />
-  Vegetarian?<br>
-  <input type="checkbox" id="veg" name="veg" value="1"> Yes<br />
+  Vegetarian?<br />
+  <select name="veg" id="vegadd" onChange="getCategory(vegadd)" required>
+  <option value="select" disabled>Select</option>
+  <option value="1">Yes</option>
+  <option value="0">No</option>
+  </select>
+  <br /><br />
   Description
   <input type="text" id="desc" name="desc" maxlength="250"><br />
 
@@ -251,8 +266,7 @@ Form data is sent to modify.php
 
   <h2>Edit item</h2>
   <span>Edit an existing item in the menu. 
-    Enter only new values.<br><br>
-    (If not vegetarian, submit without box checked.)<br><br></span>
+    Enter only new values.<br><br></span>
   <form action="modify.php" method="post">
   Item name<br />
   <select name="itemname" id="itemname" onChange="getName()" required>
@@ -298,8 +312,13 @@ Form data is sent to modify.php
   <option value="dessert">Dessert</option>
   </select>
   <br /><br />
-  Vegetarian?<br>
-  <input type="checkbox" id="veg" name="veg" value="1"> Yes<br /><br />
+  Vegetarian?<br />
+  <select name="veg" id="vegedit" onChange="getCategory(vegedit)" required>
+  <option value="select" disabled>Select</option>
+  <option value="1">Yes</option>
+  <option value="0">No</option>
+  </select>
+  <br /><br />
   Description
   <input type="text" id="desc" name="desc" maxlength="250"><br />
 

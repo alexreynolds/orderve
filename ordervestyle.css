@@ -18,9 +18,7 @@ body {
 	font-weight:400;
 	color:#000;
 	font-size:.8em;
-	padding-top: 5%;
 	text-align:center;
-	padding:5%;
 }
 
 a {
@@ -72,15 +70,10 @@ td {
 	height:100px;
 }
 
-/* table containing menu */
-.content {
-	border-radius:15px;
-	background-color:#FFF;
-	padding:15px;
-	margin-top:-5%;
-	box-shadow: 0px 5px 10px #000;
-	width:100%;
-	margin-bottom:15%;
+.itemb {
+	color:#37CEA0;
+	font-weight:400;
+	font-size:1.2em;
 }
 
 /* Div wrapper for main page content */
@@ -88,50 +81,74 @@ td {
 #contentwrapper {
 	width: 100%;
 	height: auto;
-	padding: 0;
 }
 
 /* Main div on home page */
 #main {
 	width: 90%;
+	margin-top: 12%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-/* For main content divs */
-.main {
+/* table containing menu */
+.content {
 	border-radius:15px;
 	background-color:#FFF;
-	padding:3%;
+	padding:15px;
 	box-shadow: 0px 5px 10px #000;
 	width:100%;
-	height:auto;
 	margin-bottom:15%;
-	text-align:center;
-	vertical-align:center;
-	margin-top:15%;
-	margin-right: auto;
-	margin-left: auto;
-	/*
-	margin-left:5%;
-
-	*/
+	text-align: left;
+	border-spacing: 0;
 }
 
-/* table cell for food item info */
+
+/* Names of menu categories*/
+.catetitle {
+	color: #ABE52C;
+	font-size: 1.2em;
+	width: 100%;
+}
+
+/* Hidden row containing options */
+.optionsrow {
+	width: 100%;
+	background-color: #999;
+	display: none;
+}
+
+/* Food options table */
+.options {
+	width: 100%;
+	height: auto;
+}
+
+/* table cell in options table for food item info */
 .iteminfo {
 	text-align:left;
-	vertical-align:center;
+	vertical-align: middle;
+	padding: 2%;
 	padding-left:5%;
 	width:100%;
+	border-bottom: solid 1px #BBBBBB;
 }
 
-/* Bolded item names*/
-.itemb {
+.options tr:last-child td {
+	border-bottom: none;
+}
+
+/* Names of individual items */
+.itemname {
 	color:#37CEA0;
-	font-weight:400;
-	font-size:1em;
-	vertical-align:center;
+	font-size: 1em;
+	font-weight: 700;
+}
+
+/* Descriptions of items */
+.desc {
+	color: #BBBBBB;
+	font-size: .9em;
 }
 
 .btncell {
@@ -148,8 +165,24 @@ td {
 .expand {
 	width:15px;
 	height:15px;
-	vertical-align:center;
 }
+
+/* For main content divs */
+.main {
+	border-radius:15px;
+	background-color:#FFF;
+	padding:3%;
+	box-shadow: 0px 5px 10px #000;
+	width:100%;
+	height:auto;
+	margin-bottom:15%;
+	text-align:center;
+	vertical-align:center;
+	margin-top:15%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 
 /* Check out button*/
 .checkout {
@@ -189,12 +222,10 @@ nav {
 	display:inline-block;
 	padding-top:3%;
 	padding-right:5%;
-	padding-bottom:1%;
 	position:fixed;
 	left:0px;
 	width:100%;
 	height:auto;
-	vertical-align:center;
 
 	/* Sets a gradient as the image background */
 	background-image: linear-gradient(bottom, rgb(18,18,18) 0%, rgb(20,20,20) 4%, rgb(31,31,31) 83%);
@@ -216,8 +247,7 @@ nav {
 .top {
 	top:0px;
 	height:7%;
-	text-align:right;
-	position:absolute;
+	/*position:absolute;*/
 }
 
 /* Styles bottom nav bar */
@@ -420,11 +450,12 @@ nav {
 }
 
 /* Setting width of columns in menu table */
-#foodname { width: 15%; }
+#foodname { width: 12%; }
 #price { width: 4%; }
 #count { width: 1.5%; }
 #cat { width: 4%; }
-#veg { width: 4%; }
+#veg { width: 2%; }
+#description { width: 18%;}
 
 /* Table organizing menu edit options */
 #editmenucontrols {
@@ -445,6 +476,7 @@ nav {
 }
 
 #editmenucontrols input {
+	/*margin-right: 10px;*/
 }
 
 /* Displays copyright information */

@@ -58,13 +58,6 @@ mysql_select_db($db, $con);
 if ($_POST['action']=='insert') {
 	
 	$itemname = $_POST['foodname'];
-	$veg = "";
-	if (!isset($_POST['veg'])) {
-		$veg = 0;
-	}
-	else {
-		$veg = 1;
-	}
 	$result = mysql_query("SELECT * FROM Foods WHERE foodname='$itemname'");
 	$num_rows = mysql_num_rows($result);
 
@@ -76,7 +69,7 @@ if ($_POST['action']=='insert') {
 	else 	// Otherwise, insert item into table accordingly
 	{
 		$sql="INSERT INTO Foods (FoodName, FoodPrice, OrderCount, Category, Veg, description)
-		VALUES ('$_POST[foodname]','$_POST[foodprice]', 0, '$_POST[category]', '$veg', '$_POST[desc]')";
+		VALUES ('$_POST[foodname]','$_POST[foodprice]', 0, '$_POST[category]', '$_POST[veg]', '$_POST[desc]')";
 
 	// Error catch
 	if (!mysql_query($sql,$con))
@@ -198,15 +191,21 @@ else if ($_POST['action']=='edit') {
 					}
 				}
 			}
+			// If veg must be changed
+			if (isset($_POST['veg'])) {
+				$newveg = $_POST['veg'];
 
-			// Set vegetarian boolean to given
-			$sql = "UPDATE Foods SET Veg='$veg' WHERE foodID='$itemname'";
+				if (strlen($newveg) > 0) {
 
-				// Error catch
-				if (!mysql_query($sql, $con))
-				{
-					die('Error: ' . mysql_error());
+					$sql = "UPDATE Foods SET Veg='$newveg' WHERE foodID='$itemname'";
+
+					// Error catch
+					if (!mysql_query($sql, $con))
+					{
+						die('Error: ' . mysql_error());
+					}
 				}
+			}
 			
 			echo "<img src=\"thumbsup.jpg\" class=\"round\"><br/><br/>";
 			echo "Edited menu item.";

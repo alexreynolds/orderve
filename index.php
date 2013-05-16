@@ -147,10 +147,10 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 
 <!-- Nav bar with submit order button -->
 <nav class="top">
-	<table style="width:100%; text-align:center; vertical-align:middle"><tr>
-		<td style="width:100px"></td>
-		<td style="padding:0"><span class="head">Orderve</span></td>
-		<td style="width:100px;"><a form="orderform" class="checkout" onclick="orderform.submit();">Checkout</a></td>
+	<table style="width:100%; text-align:center; vertical-align: middle;"><tr>
+		<td style="width:100px; vertical-align: middle;"></td>
+		<td style="padding:0; vertical-align: middle;"><span class="head">Orderve</span></td>
+		<td style="width:100px; vertical-align: middle;"><a form="orderform" class="checkout" onclick="orderform.submit();">Checkout</a></td>
 	</tr></table>
 </nav>
 
@@ -187,7 +187,7 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	
 
 	// Begins menu table (white rounded rectangle background)
-	echo "<table align=\"center\" class=\"content\" id=\"menu\"><tr>";
+	echo "<table class=\"content\" id=\"menu\"><tr>";
 
 	// Form to submit order
 	echo "<form method=\"post\" action=\"orderinfo.php\" id=\"orderform\">";
@@ -195,33 +195,41 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 
 	// APPETIZERS section
 	
-	echo "<td align=\"left\"><div class=\"itemb\">Appetizers</div></td><td align=\"right\">
+	echo "<tr>
+			<td align=\"left\" class=\"catetitle\">Appetizers</td>
+			<td align=\"right\">
 			<img class=\"expand\" id=\"appetizerbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('appetizers', 'appetizerbtnexpand')\">
-			<img class=\"expand\" id=\"appetizerbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('appetizers', 'appetizerbtncontract')\" style=\"display:none;\"></td></tr>";
+			<img class=\"expand\" id=\"appetizerbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('appetizers', 'appetizerbtncontract')\" style=\"display:none;\">
+			</td>
+			</tr>";
 	
 
-	// Begins salad table (contains all selections for category)
-	echo "<tr id=\"appetizers\" style=\"display:none;\"><td><table>";
+	// Begins appetizer table (contains all selections for category)
+	echo "<tr id=\"appetizers\" style=\"display:none;\"><td style=\"width:50%;\">";
 
-	// Selects main course items from Foods table
-	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'salad'");
+	// Selects appetizer items from Foods table
+	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'appetizer'");
 
-	// Generates main course options table
+	// Generates appetizer options table
 	optionsTableGen($result);
 
 
 
 	// SALADS section
 	
-	echo "<td align=\"left\"><div class=\"itemb\">Soups and Salads</div></td><td align=\"right\">
+	echo "<tr>
+			<td align=\"left\" class=\"catetitle\">Soups and Salads</td>
+			<td align=\"right\">
 			<img class=\"expand\" id=\"saladbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('salads', 'saladbtnexpand')\">
-			<img class=\"expand\" id=\"saladbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('salads', 'saladbtncontract')\" style=\"display:none;\"></td></tr>";
+			<img class=\"expand\" id=\"saladbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('salads', 'saladbtncontract')\" style=\"display:none;\">
+			</td>
+			</tr>";
 	
 
 	// Begins salad table (contains all selections for category)
-	echo "<tr id=\"salads\" style=\"display:none;\"><td><table>";
+	echo "<tr id=\"salads\" style=\"display:none;\"><td style=\"width:50%;\">";
 
-	// Selects main course items from Foods table
+	// Selects salad items from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'salad'");
 
 	// Generates salad options table
@@ -231,13 +239,16 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 
 	// MAIN COURSES section
 	
-	echo "<td align=\"left\"><div class=\"itemb\">Main Courses</div></td><td align=\"right\">
+	echo "<tr>
+			<td align=\"left\" class=\"catetitle\">Main Courses</td>
+			<td align=\"right\">
 			<img class=\"expand\" id=\"mainbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('maincourses', 'mainbtnexpand')\">
-			<img class=\"expand\" id=\"mainbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('maincourses', 'mainbtncontract')\" style=\"display:none;\"></td></tr>";
+			<img class=\"expand\" id=\"mainbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('maincourses', 'mainbtncontract')\" style=\"display:none;\">
+			</td></tr>";
 	
 
 	// Begins Main courses table (contains all selections for category)
-	echo "<tr id=\"maincourses\" style=\"display:none;\"><td><table>";
+	echo "<tr id=\"maincourses\" style=\"display:none;\"><td style=\"width:50%;\">";
 
 	// Selects main course items from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'main'");
@@ -247,22 +258,42 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 
 
 
+	// DESSERTS section
+	echo "<tr>
+			<td align=\"left\" class=\"catetitle\">Desserts</td>
+			<td align=\"right\">
+			<img class=\"expand\" id=\"dessbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('dess', 'dessbtnexpand')\">
+			<img class=\"expand\" id=\"dessbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('dess', 'dessbtncontract')\"  style=\"display:none;\">
+			</td></tr>";
+			
+	// Begins desserts table
+	echo "<tr id=\"dess\" style=\"display:none;\"><td style=\"width:50%;\">";
+
+	// Selects all desserts from Foods table
+	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'dessert'");
+
+	// Generates desserts options table
+	optionsTableGen($result);
+
+
 
 	// DRINKS section
-	echo "<td align=\"left\"><div class=\"itemb\">Drinks</div></td>
+	echo "<tr>
+			<td align=\"left\" class=\"catetitle\">Drinks</td>
 			<td align=\"right\">
 			<img class=\"expand\" id=\"drinkbtnexpand\" src=\"buttonplus2.png\" onClick=\"toggleDisplay('drinks', 'drinkbtnexpand')\">
 			<img class=\"expand\" id=\"drinkbtncontract\" src=\"buttonminus2.png\" onClick=\"toggleDisplay('drinks', 'drinkbtncontract')\"  style=\"display:none;\">
 			</td></tr>";
 			
-	// Begins drinks table
-	echo "<tr id=\"drinks\" style=\"display:none;\"><td><table>";
+	// Row containing drinks options table
+	echo "<tr id=\"drinks\" style=\"display:none;\"><td style=\"width:50%;\">";
 
 	// Selects all drinks from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'drink'");
 
 	// Generates drinks options table
 	optionsTableGen($result);
+
 
 	// Finish form
 	echo "</form><br /><br />";
@@ -277,52 +308,40 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 	// INPUT: res, the mysql query result for the respective category
 	function optionsTableGen($res) {
 
-		while ($row = mysql_fetch_array($res))
-		{	
-			// Begin table cell
-			echo "<tr><td>";
+		echo "<table class=\"options\">";
 
-			// Begin table with item info. LHS is item image, RHS is info
-			echo "<table><tr>";
-				// LHS
-				/*
-				echo "<td>";
-				// Draws image
-				echo "<img src=\"" . $row['ImageURL'] . "\" class=\"round\"><br/><br/>";
-				echo "</td>
-				*/
-				echo "<td class=\"iteminfo\">";
-				// RHS
+		while ($row = mysql_fetch_array($res))
+		{
+			echo "<tr><td class=\"iteminfo\">";
 				// Name of food item
-				echo "<div class=\"itemb\">" . $row['FoodName'];
+				echo "<span class=\"itemname\">" . $row['FoodName'] . "</span>";
 					// If the item is vegetarian, display the vegetarian icon next to the item name
 					if ($row['Veg'] == '1')
 					{
 						echo "  <img src=\"vegicon.png\" class=\"vegicon\">";
 					}
-				echo "</div>";
-				// Price of food item
-				echo "$" . number_format($row['FoodPrice'],2) . "<br />";
-				// Quantity of item
-				echo "Quantity: <input type=\"number\" id=\"q\" value=\"0\" min=\"0\" max=\"20\" step=\"1\"
+				echo "<br />";
+				// Item description
+				echo "<span class=\"desc\">" . $row['description'] . "</span><br />";
+				// Price & quantity of food item
+				echo "$" . number_format($row['FoodPrice'],2) . "  <input type=\"number\" id=\"q\" value=\"0\" min=\"0\" max=\"20\" step=\"1\"
 				name=\"" . $row['foodID'] . "\"><br />";
-				echo "</td>";
-			// End item info table
-			echo "</tr></table>";
 			// Hidden food name value
 			echo "<input type=\"hidden\" name=\"foodtype\" value=\"" . $row['FoodName'] . "\" />";
 			// Hidden seat location information
 			echo "<input type=\"hidden\" name=\"seat\" value=\"" . $_SESSION['seat'] . "\"/>";
 			// Hidden price information
 			echo "<input type=\"hidden\" name=\"price\" value=\"" . $row['FoodPrice'] . "\"/>";
-			// End div
-			//echo "</div>";
-			// End table cell and row
-			echo "</td><tr>";
+
+			// Close off item info cell and row
+			echo "</td></tr>";
 		}
 		
-		// Close off table
-		echo "</tr></table></td></tr><br /></tr>";
+		// Close off options table
+		echo "</table>";
+
+		// Close off cell and row of menu category row
+		echo "</td></tr>";
 	}
 
 	?>
@@ -333,11 +352,12 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 <!-- End content wrapper -->
 </div>
     
+    <!--
 <nav class="bottom">
 	<footer><a href="controls.php">Control Panel</a><br><br>
 			Copyright © 2013 Alex Reynolds</footer>
 </nav>
-
+	-->
 
     
     
@@ -375,6 +395,10 @@ if ( isMobile.Opera() ) { alert('OPERA'); }
 			document.getElementById('mainbtncontract').style.display = "block";
 		else if (btn ==	"mainbtncontract")
 			document.getElementById('mainbtnexpand').style.display = "block";
+		else if (btn == "dessbtnexpand")
+			document.getElementById('dessbtncontract').style.display = "block";
+		else if (btn ==	"dessbtncontract")
+			document.getElementById('dessbtnexpand').style.display = "block";
 
 		return false;
 
