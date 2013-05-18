@@ -7,12 +7,9 @@ html {
   background-size: cover;
 }
 
-/* LOOK AT THIS DETERMINES CSS FOR MOBILE DEVICES & SMALL SCREENS*/
-@media screen and (max-width: 480px)  
-{
-	.content {
-		margin-top: -8%;
-	}
+/* CSS for larger screen */
+
+@media screen and (min-device-width: 800px) {
 }
 
 body {
@@ -97,7 +94,7 @@ td {
 	padding: 5%;
 	box-shadow: 0px 5px 10px #000;
 	width: 85%;
-	margin-top: 20%;
+	margin-top: 70px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -108,7 +105,7 @@ td {
 	text-align: left;
 	border-spacing: 0;
 	padding: 0px;
-	margin-top: -5%;
+	margin-top: -30px;
 }
 
 .content tr:first-child td {

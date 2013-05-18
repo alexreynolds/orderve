@@ -234,7 +234,7 @@ index.php
 				// Item description
 				echo "<span class=\"desc\">" . $row['description'] . "</span><br />";
 				// Price & quantity of food item
-				echo "$" . number_format($row['FoodPrice'],2) . "  <input type=\"number\" id=\"q\" value=\"0\" min=\"0\" max=\"20\" step=\"1\"
+				echo "$" . number_format($row['FoodPrice'],2) . "  <input type=\"number\" id=\"q\" value=\"0\" min=\"0\" max=\"20\" size='2' step=\"1\"
 				name=\"" . $row['foodID'] . "\"><br />";
 			// Hidden food name value
 			echo "<input type=\"hidden\" name=\"foodtype\" value=\"" . $row['FoodName'] . "\" />";
