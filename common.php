@@ -6,6 +6,7 @@ Copyright (c) 2013 Alex Reynolds
 common.php
 
     - Used to establish a connection to the mySQL database
+    - Called on secure pages
 
 -->
 

@@ -105,7 +105,7 @@
         "; 
          
         // Randomly generates salt to protect against attacks
-        // Salt generated is a hex 8 byte salt
+        // Salt generated is an 8 byte hex salt
         $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647)); 
          
         // Hashes password with salt

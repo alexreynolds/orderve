@@ -36,22 +36,20 @@ orderinfo.php
 
 <!-- Nav bar -->
 <nav class="top">
-	<table style="width:100%; text-align:center; vertical-align:center"><tr>
+	<table style="width:100%; height:100%; text-align:center; vertical-align:center"><tr>
 		<td style="width:100px"><a class="back" href="javascript:javascript:history.go(-1)">Back</a></td>
 		<td style="padding:0"><span class="head">Orderve</span></td>
 		<td style="width:100px;"></td>
 	</tr></table>
 </nav>
 
-<div class="main">
 <!-- Div is displayed when user navigates here without ordering anything -->
-<div id="goback" style="display:none;">
+<div id="goback" style="display:none;" class="main">
 
     <h1 style="font-size: 4em;">Oops!</h1><br>
     Pick something before you try checking out!<br /><br />
     <span style="font-style:italic; font-size:.4em; color:#555">(Surely something must have tickled your fancy?)</span><br /><br />
 
-</div>
 </div>
 
 

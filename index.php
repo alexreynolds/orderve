@@ -20,6 +20,8 @@ index.php
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
+<title>Orderve</title>
+
 <!-- Imports fonts from Google Fonts API -->
 <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 
@@ -27,8 +29,6 @@ index.php
 
 <!-- Fits view to device screen width -->
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>Orderve</title>
 
 <link rel="stylesheet" type="text/css" href="ordervestyle.css">
 
@@ -42,7 +42,7 @@ index.php
 
 <!-- Nav bar with submit order button -->
 <nav class="top">
-	<table style="width:100%; text-align:center; vertical-align: middle;"><tr>
+	<table style="width:100%; height:100%; text-align:center; vertical-align: middle;"><tr>
 		<td style="width:100px; vertical-align: middle;"></td>
 		<td style="padding:0; vertical-align: middle;"><span class="head">Orderve</span></td>
 		<td style="width:100px; vertical-align: middle;"><a form="orderform" class="checkout" onclick="orderform.submit();">Checkout</a></td>
@@ -53,11 +53,10 @@ index.php
 
 <!-- Page content -->
 <div class="main">
-
 <!-- Begins menu table -->
 <table class="content" id="menu">
-
 <!-- Form to submit order -->
+
 <form method="post" action="orderinfo.php" id="orderform">
 
 <!-- Start APPETIZERS section -->
@@ -115,7 +114,7 @@ index.php
 	*/
 
 	// Begins appetizer table (contains all selections for category)
-	echo "<tr id=\"appetizers\" style=\"display:none;\"><td style=\"width:50%;\">";
+	echo "<tr id=\"appetizers\" style=\"display:none;\"><td style=\"width:80%;\">";
 
 	// Selects appetizer items from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'appetizer'");
@@ -137,7 +136,7 @@ index.php
 	
 
 	// Begins salad table (contains all selections for category)
-	echo "<tr id=\"salads\" style=\"display:none;\"><td style=\"width:50%;\">";
+	echo "<tr id=\"salads\" style=\"display:none;\"><td style=\"width:80%;\">";
 
 	// Selects salad items from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'salad'");
@@ -158,7 +157,7 @@ index.php
 	
 
 	// Begins Main courses table (contains all selections for category)
-	echo "<tr id=\"maincourses\" style=\"display:none;\"><td style=\"width:50%;\">";
+	echo "<tr id=\"maincourses\" style=\"display:none;\"><td style=\"width:80%;\">";
 
 	// Selects main course items from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'main'");
@@ -177,7 +176,7 @@ index.php
 			</td></tr>";
 			
 	// Begins desserts table
-	echo "<tr id=\"dess\" style=\"display:none;\"><td style=\"width:50%;\">";
+	echo "<tr id=\"dess\" style=\"display:none;\"><td style=\"width:80%;\">";
 
 	// Selects all desserts from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'dessert'");
@@ -196,7 +195,7 @@ index.php
 			</td></tr>";
 			
 	// Row containing drinks options table
-	echo "<tr id=\"drinks\" style=\"display:none;\"><td style=\"width:50%;\">";
+	echo "<tr id=\"drinks\" style=\"display:none;\"><td style=\"width:80%;\">";
 
 	// Selects all drinks from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'drink'");
@@ -262,13 +261,13 @@ index.php
 <!-- End content wrapper -->
 </div>
     
-    <!--
+
+<!--
 <nav class="bottom">
 	<footer><a href="controls.php">Control Panel</a><br><br>
 			Copyright © 2013 Alex Reynolds</footer>
 </nav>
-	-->
-
+-->
     
     
     <script>

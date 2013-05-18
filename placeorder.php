@@ -129,7 +129,7 @@ $con = mysql_connect($servername,$username,$password);
 			}
 	}
 	// Else if user does not yet exist in table, insert
-	else
+	else if ($num_rows < 1)
 	{
 	$sql="INSERT INTO Users (Title, FirstName, LastName, Phone, Email, Time, OrderCount)
 	VALUES ('$_POST[titles]', '$_POST[firstname]', '$_POST[lastname]', '$_POST[usertel]', '$_POST[usermail]', '$_POST[time]', 1)";
@@ -149,48 +149,8 @@ $con = mysql_connect($servername,$username,$password);
 	mysql_query("UPDATE Users Set OrderCount=$count WHERE userID='$userID'");
 	
 	// Updates timestamps in User table
-	$time = $row['Time'] . '\n' . $_POST['time'];
+	$time = $_POST['time'];
 	mysql_query("UPDATE Users Set Time=$time WHERE userID='$userID'");
-	
-	
-	
-	// === UPDATES ORDERS TABLE === //
-	/*
-	// Description of user's location (i.e. seat/table/room number)
-	$loc = $_POST['seat'];
-	$result = mysql_query("SELECT * FROM Orders WHERE Description='$loc'");
-	$num_rows = mysql_num_rows($result);
-
-	// If true, there are already instances of the item in the table. Only increase count.
-	if ($num_rows)
-	{
-		while($row = mysql_fetch_array($result))
-		{
-			if ($row['Description']==$loc)
-			{
-				// Increments order count by 1, updates value in table
-				$count = $row['OrderCount'] + 1;
-				mysql_query("UPDATE Orders SET OrderCount=$count WHERE Description='$loc'");
-			}
-		}
-  
-	}
-	// Otherwise, insert item into table accordingly
-	else 	
-	{
-	$sql="INSERT INTO Orders (OrderCount, Description)
-	VALUES (1,'$_POST[seat]')";
-
-	// Error catch
-		if (!mysql_query($sql,$con))
-		{
-			die('Error: ' . mysql_error());
-		}
-	}
-	*/
-
-	// Gets rid of seat variable in session so it's not saved too long
-	//unset($_SESSION['seat']); 
 	
 ?>
 

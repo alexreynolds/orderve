@@ -48,11 +48,41 @@ analytics.php
     } 
 ?> 
 
-<!-- Takes user back to previous page-->
-<script>
-    document.write('<a href="' + document.referrer + '">Go Back</a>');
-</script><br /><br /><br />
+<!-- Nav bar for control panel-->
+<nav id="navside">
+    <span class="head" style="color:#ABE52C;">Control Panel</span>
 
+    <br><br>
+
+    <ul>
+        <li><a href="pending.php" style="font-weight: 700; font-size: 1.2em;">Pending Orders</a></li>
+        <li><a href="menuedit.php">Edit Menu</a></li>
+        <li><a href="createqr.php">Generate QR</a></li>
+        <li class="selected"><a href="analytics.php">Order Analytics</a></li>
+        <li><a href="controls.php">Controls Main</a></li>
+
+        <br><br>
+        
+        <li><a href="index.php">Back to Home</a></li>
+        <li><a href="logout.php">Log out</a></li>
+    </ul>
+</nav>
+
+<div id="mainwrapper">
+
+<div class="controlsmain" id="analyticsmain">
+
+<h1>Order Analytics</h1>
+
+<h2>Useful Statistics</h2>
+
+<table id="statstable">
+
+  <th>Total orders to date</th>
+  <th>Most popular item</th>
+  <th>Least popular item</th>
+
+  <tr>
 
 <?php
 
@@ -69,21 +99,13 @@ if (!$con)
 
 mysql_select_db($db, $con);
 
-
-
-// Contains useful information about order history
-
-echo "<h1>Statistics</h1>";
-
-echo "<br />";
-
 // Gets total order count based on Foods table values
 
 $result = mysql_query("SELECT SUM(OrderCount) AS ordersum FROM Foods"); 
 $row = mysql_fetch_assoc($result); 
 $sum = $row['ordersum'];
 
-echo "<b>Total orders to date: </b>" . $sum . "<br /><br />";
+echo "<td><b>" . $sum . "</b> orders</td>";
 
 
 // Figures out the most popular (highest order count) item
@@ -97,7 +119,7 @@ $row = mysql_fetch_assoc($result);
 $result = mysql_query("SELECT * FROM Foods WHERE OrderCount = $item");
 $row = mysql_fetch_assoc($result);
 
-echo "<b>Most popular menu item: </b>" . $row['FoodName'] . " | <b>" . $row['OrderCount'] . "</b> orders<br /><br />";
+echo "<td>" . $row['FoodName'] . " | <b>" . $row['OrderCount'] . "</b> orders</td>";
 
 
 // Figures out the least popular (lowest order count) item
@@ -111,37 +133,84 @@ $row = mysql_fetch_assoc($result);
 $result = mysql_query("SELECT * FROM Foods WHERE OrderCount = $item");
 $row = mysql_fetch_assoc($result);
 
-echo "<b>Least popular menu item: </b>" . $row['FoodName'] . " | <b>" . $row['OrderCount'] . "</b> orders<br /><br />";
+echo "<td>" . $row['FoodName'] . " | <b>" . $row['OrderCount'] . "</b> orders</td>";
 
 
-echo"</div>";
+// End menu stats, begin user stats
+echo "</tr>";
+echo "<th>Most frequent user</th>
+      <th>Oldest user</th>
+      <th>Newest user</th>";
+echo "<tr>";
+
+// Figures out the most frequent user (highest order count)
+
+$result = mysql_query("SELECT MAX(OrderCount) AS freq FROM Users");
+$row = mysql_fetch_assoc($result); 
+
+  // Holds the highest order count (an int)
+  $user = $row['freq'];
+
+$result = mysql_query("SELECT * FROM Users WHERE OrderCount = $user");
+$row = mysql_fetch_assoc($result);
+
+echo "<td>" . $row['Title'] . " " . $row['FirstName'] . " " . $row['LastName'] . "<br /><b>" . $row['OrderCount'] . "</b> orders</td>";
 
 
+// Figures out the oldest user (lowest user ID)
 
+$result = mysql_query("SELECT MIN(userID) AS old FROM Users");
+$row = mysql_fetch_assoc($result); 
+
+  // Holds the lowest order count (an int)
+  $user = $row['old'];
+
+$result = mysql_query("SELECT * FROM Users WHERE userID = $user");
+$row = mysql_fetch_assoc($result);
+
+echo "<td>" . $row['Title'] . " " . $row['FirstName'] . " " . $row['LastName'] . "<br />User since <b>" . $row['Time'] . "</b></td>";
+
+
+// Figures out the newest user (lowest user ID)
+
+$result = mysql_query("SELECT MIN(userID) AS new FROM Users");
+$row = mysql_fetch_assoc($result); 
+
+  // Holds the lowest order count (an int)
+  $user = $row['new'];
+
+$result = mysql_query("SELECT * FROM Users WHERE userID = $user");
+$row = mysql_fetch_assoc($result);
+
+echo "<td>" . $row['Title'] . " " . $row['FirstName'] . " " . $row['LastName'] . "<br />User since <b>" . $row['Time'] . "</b></td>";
+
+// End statistics table
+echo "</tr></table>";
+
+
+echo "<br /><br />";
 
 // == PRINT OUT USERS TABLE == //
 
-echo "<h1>Users</h1><br /><br />";
+echo "<h2>Users</h2>";
 
 $result = mysql_query("SELECT * FROM Users");
 
-echo "<table border='1'>
+echo "<table id='usertable'>
 <tr>
-<th>user ID</th>
 <th>Title</th>
-<th>First Name</th>
-<th>Last Name</th>
+<th>First</th>
+<th>Last</th>
 <th>Phone</th>
 <th>E-mail</th>
-<th>OrderCount</th>
-<th>Time</th>
+<th># Orders</th>
+<th>First Order</th>
 </tr>";
 
 // Iterates through array of row results
 while($row = mysql_fetch_array($result))
   {
   echo "<tr>";
-  echo "<td>" . $row['userID'] . "</td>";
   echo "<td>" . $row['Title'] . "</td>";
   echo "<td>" . $row['FirstName'] . "</td>";
   echo "<td>" . $row['LastName'] . "</td>";
@@ -157,8 +226,11 @@ echo "</table>";
 mysql_close($con);
 ?>
 
+<!-- End contents div -->
+</div>
 
-
+<!-- End wrapper div -->
+</div>
 
 
 </body>

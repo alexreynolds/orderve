@@ -69,6 +69,20 @@ controls.php
     </ul>
 </nav>
 
+<nav id="navtop" class="top">
+
+    <ul>
+        <li><a href="pending.php" style="font-weight: 700; font-size: 1.2em;">Pending Orders</a></li>
+        <li><a href="menuedit.php">Edit Menu</a></li>
+        <li><a href="createqr.php">Generate QR</a></li>
+        <li><a href="analytics.php">Order Analytics</a></li>
+        <li class="selected"><a href="controls.php">Controls Main</a></li>
+
+        <li><a href="index.php">Back to Home</a></li>
+        <li><a href="logout.php">Log out</a></li>
+    </ul>
+</nav>
+
 <div id="#mainwrapper">
 
 <div class="controlsmain">
