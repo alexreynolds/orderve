@@ -108,6 +108,7 @@ td {
 	text-align: left;
 	border-spacing: 0;
 	padding: 0px;
+	margin-top: -5%;
 }
 
 .content tr:first-child td {
@@ -123,16 +124,9 @@ td {
 	padding-bottom: 3%;
 }
 
-/* Hidden row containing options */
-.optionsrow {
-	width: 100%;
-	background-color: #999;
-	display: none;
-}
-
 /* Food options table */
-.options {
-	width: 100%;
+.options td {
+	width:500px;
 }
 
 /* table cell in options table for food item info */
@@ -206,7 +200,7 @@ td {
 #receipt {
 	text-align:right;
 	padding:2%;
-	width:60%;
+	width:70%;
 	border-spacing: 0;
 	margin-left: auto;
 	margin-right: auto;

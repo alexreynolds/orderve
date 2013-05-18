@@ -154,22 +154,30 @@ $con = mysql_connect($servername,$username,$password);
 	
 ?>
 
-<div id="content" align="center">
+<!-- Nav bar -->
+<nav class="top">
+	<table style="width:100%; height:100%; text-align:center; vertical-align:center"><tr>
+		<td style="width:100px"><a class="back" href="javascript:javascript:history.go(-2)">Back</a></td>
+		<td style="padding:0"><span class="head">Orderve</span></td>
+		<td style="width:100px;"></td>
+	</tr></table>
+</nav>
 
-<?php echo $_POST['time']; ?><br /><br />
 
-<h1>Thanks for your order!</h1> <br /><br />
+<!-- Content wrapper -->
+<div id="contentwrapper">
 
-Cheers for your service <?php echo $_POST['titles'] ?>  <?php echo $_POST['lastname'] ?>!<br />
+<!-- Main page content -->
+<div class="main" id="orderinfo">
 
-You should recieve a confirmation email shortly,<br />
-and your order soon after that.<br /><br />
+<h1>Cheers <?php echo $_POST['titles'] ?>  <?php echo $_POST['lastname'] ?>!</h1><br /><br />
 
-Provided, you know, the world doesn't end or anything anytime soon.<br /><br />
+Stay where you are!<br />
+Your order should be coming to you soon.<br /><br />
 
-<br /><br />
+<span class="desc"><i>(Provided, you know, the world doesn't end or anything anytime soon.</i></span><br /><br />
 
-<a href="index.php?seat=<?php echo $_SESSION['seat'] ?>">Return Home</a><br /><br />
+</div>
 
 </div>
 
