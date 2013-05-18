@@ -74,7 +74,7 @@ analytics.php
 
 <h1>Order Analytics</h1>
 
-<h2>Useful Statistics</h2>
+<h2>Statistics</h2>
 
 <table id="statstable">
 

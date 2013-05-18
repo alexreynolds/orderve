@@ -43,19 +43,21 @@ orderinfo.php
 	</tr></table>
 </nav>
 
+
+<!-- Main page content -->
+<div id="contentwrapper">
+
 <!-- Div is displayed when user navigates here without ordering anything -->
-<div id="goback" style="display:none;" class="main">
+<div id="goback" style="display:none;">
+
+<div class="main" style="width: 150px; height: 150px; margin-top: 30%">
 
     <h1 style="font-size: 4em;">Oops!</h1><br>
     Pick something before you try checking out!<br /><br />
     <span style="font-style:italic; font-size:.4em; color:#555">(Surely something must have tickled your fancy?)</span><br /><br />
-
 </div>
 
-
-<!-- Main page content -->
-<div id="contentwrapper">
-<!--<div id="infobody" align="center"> -->
+</div>
 
 <!-- Displayed if all is well with order -->
 <div class="main" id="orderinfo">

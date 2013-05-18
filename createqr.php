@@ -23,6 +23,10 @@ createqr.php
 <!-- Fits view to device screen width -->
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
+<!-- Include jQuery code -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+
 <!-- Imports fonts from Google Fonts API -->
 <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 
@@ -37,7 +41,31 @@ createqr.php
 
 <body>
 
-<h1> Generate QR Code </h1><br /><br />
+<!-- Nav bar for control panel-->
+<nav id="navside">
+    <span class="head" style="color:#ABE52C;">Control Panel</span>
+
+    <br><br>
+
+    <ul>
+        <li><a href="pending.php" style="font-weight: 700; font-size: 1.2em;">Pending Orders</a></li>
+        <li><a href="menuedit.php">Edit Menu</a></li>
+        <li class="selected"><a href="createqr.php">Generate QR</a></li>
+        <li><a href="analytics.php">Order Analytics</a></li>
+        <li><a href="controls.php">Controls Main</a></li>
+
+        <br><br>
+
+        <li><a href="index.php">Back to Home</a></li>
+        <li><a href="logout.php">Log out</a></li>
+    </ul>
+</nav>
+
+<div id="#mainwrapper">
+
+<div class="controlsmain" id="qrmain">
+
+<h1> Generate QR Code </h1>
 
 <table><tr>
 
@@ -47,14 +75,16 @@ createqr.php
 <form name="qrForm" id="qrForm">
 
 <fieldset>
-Input URL: <input type="text" name="url" id ="url" placeholder="http://yourdomain.com"><br />
+<b>Input location name or number</b><br />
+<span class="desc">Input will be appended to the home menu URL.<br />
+					<i>(https://qrproject.cs.vassar.edu/?seat=)</i><br />
+<input type="text" name="url" id ="url" size="20" placeholder="ex. 123, front" style="margin-left: 0;"><br />
 </fieldset>
 
-<br />
-
 <fieldset>
-<b>QR Error Correction Level</b><br />
-<i>L is lowest level of error correction, H is highest</i><br />
+<b>Error Correction Level</b><br />
+<span class="desc">L is the lowest level of error correction, H is the highest.<br />
+					For more on error correction, <a href="http://blog.qr4.nl/category/QR-Code-Error-Correction.aspx">see here</a>.</span><br />
 
 
 <input type="radio" name="level" value="L" checked>L</input><br />
@@ -63,34 +93,27 @@ Input URL: <input type="text" name="url" id ="url" placeholder="http://yourdomai
 <input type="radio" name="level" value="H">H</input><br />
 </fieldset>
 
-<br />
-
 <fieldset>
-<b>QR Style</b><br />
-
-
-<input type="radio" name="style" value="standard">Square (standard QR)</input><br />
+<b>Code Style</b><br />
+<span class="desc">The style of the cells of your QR code.</span><br />
 <input type="radio" name="style" value="circle" checked>Circular</input><br />
+<input type="radio" name="style" value="standard">Square (standard QR)</input><br />
 <input type="radio" name="style" value="roundrect">Rounded Rectangle</input><br />
 
 </fieldset>
 
-<br />
-
 <fieldset>
 
-<b>QR Color</b><br />
-Select the color for your QR code.<br /><br />
+<b>Code Color</b><br />
+<span class="desc">The lighter the color, the less contrast your code will 
+	have, and the less readable it will be.<br />
+	Try to stick to darker colors.</span><br /><br />
 
-<input type="color" name="colordark"><br /><br />
-
-
-<i>Note that the lighter the color, the less contrast your code will<br />
-	have and the less readable it will be. Try to stick to darker colors.</i><br />
+<input type="color" name="colordark"><br />
 
 </fieldset>
 
-<br /><br />
+<br />
 
 <!-- The name of the div where the code should be drawn -->
 <input type="hidden" name="divname" value="qr_spot">
@@ -100,10 +123,12 @@ Select the color for your QR code.<br /><br />
 
 </td>
 
-<td id="qr" style="text-align:center; width:40%">
+<td id="qr">
 
 <!-- Where the QR code appears when generated -->
 <div id="qr_spot" class="qr">
+	<span class="desc"><i>Your generated QR code will<br />
+							appear here.</i></span>
 </div>
 
 <br /><br />
@@ -114,12 +139,7 @@ Select the color for your QR code.<br /><br />
 
 </tr></table>
 
-<br /><br /><br />
 
-
-<!-- Include jQuery code -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
 <script>
 
 // Run upon form submission
@@ -136,6 +156,8 @@ $('#qrForm').submit(function () {
 	var levelValue = $('input[name=level]:checked').val();
 	var styleValue = $('input[name=style]:checked').val();
 	var colorValue = $('input[name=colordark]').val();
+
+	urlValue = "https://qrproject.cs.vassar.edu/?seat=" + urlValue;
 
     // Clears the div so that there is only 1 code shown at a time
     document.getElementById(divName).innerHTML="";
@@ -170,9 +192,6 @@ function saveCode()
 }
 
 </script>
-
-
-<a href="index.php?seat=THRONE">Back to main</a><br />
 
 </body>
 

@@ -133,7 +133,6 @@ td {
 /* Food options table */
 .options {
 	width: 100%;
-	height: auto;
 }
 
 /* table cell in options table for food item info */
@@ -525,7 +524,7 @@ nav {
 #statstable th {
 	color: #37CEA0;
 	font-size: 1em;
-	border-bottom: solid 1px #ABE52C;
+	border-bottom: solid 1px #BBBBBB;
 	padding: 1%;
 	vertical-align: middle;
 	margin-top: 2%;
@@ -562,13 +561,25 @@ nav {
   	background-color: #ABE52C;
 }
 
-/* Setting width of columns in menu table */
-#foodname { width: 12%; }
-#price { width: 4%; }
-#count { width: 1.5%; }
-#cat { width: 4%; }
-#veg { width: 2%; }
-#description { width: 18%;}
+/* ==== QR GENERATION PAGE === */
+
+#qrmain fieldset {
+	border: none;
+	text-align: left;
+}
+
+#qrmain input {
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+/* table cell of generated qr */
+#qr {
+	border-left: solid 1px #BBBBBB;
+	padding: 2%;
+	text-align: center;
+	width: 55%;
+}
 
 @media screen and (orientation:portrait) {
     /*CSS applied when the device is in portrait mode*/

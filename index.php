@@ -53,6 +53,7 @@ index.php
 
 <!-- Page content -->
 <div class="main">
+
 <!-- Begins menu table -->
 <table class="content" id="menu">
 <!-- Form to submit order -->
@@ -114,7 +115,7 @@ index.php
 	*/
 
 	// Begins appetizer table (contains all selections for category)
-	echo "<tr id=\"appetizers\" style=\"display:none;\"><td style=\"width:80%;\">";
+	echo "<tr id=\"appetizers\" style=\"display: none;\"><td style='width: 800px'>";
 
 	// Selects appetizer items from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'appetizer'");
@@ -136,7 +137,7 @@ index.php
 	
 
 	// Begins salad table (contains all selections for category)
-	echo "<tr id=\"salads\" style=\"display:none;\"><td style=\"width:80%;\">";
+	echo "<tr id=\"salads\" style=\"display:none;\"><td style='width: 800px'>";
 
 	// Selects salad items from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'salad'");
@@ -157,7 +158,7 @@ index.php
 	
 
 	// Begins Main courses table (contains all selections for category)
-	echo "<tr id=\"maincourses\" style=\"display:none;\"><td style=\"width:80%;\">";
+	echo "<tr id=\"maincourses\" style=\"display:none;\"><td style='width: 800px'>";
 
 	// Selects main course items from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'main'");
@@ -176,7 +177,7 @@ index.php
 			</td></tr>";
 			
 	// Begins desserts table
-	echo "<tr id=\"dess\" style=\"display:none;\"><td style=\"width:80%;\">";
+	echo "<tr id=\"dess\" style=\"display:none;\"><td style='width: 800px'>";
 
 	// Selects all desserts from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'dessert'");
@@ -195,7 +196,7 @@ index.php
 			</td></tr>";
 			
 	// Row containing drinks options table
-	echo "<tr id=\"drinks\" style=\"display:none;\"><td style=\"width:80%;\">";
+	echo "<tr id=\"drinks\" style=\"display:none;\"><td style='width: 800px'>";
 
 	// Selects all drinks from Foods table
 	$result = mysql_query("SELECT * FROM Foods WHERE Category = 'drink'");
@@ -250,7 +251,7 @@ index.php
 		echo "</table>";
 
 		// Close off cell and row of menu category row
-		echo "</td></tr>";
+		echo "</tr>";
 	}
 
 	?>
@@ -319,27 +320,7 @@ index.php
 	// 	so must take that into consideration for orientation calculations
 	function handleOrientation() {
 
-	// Find standard screen orientation and adjust orientation accordingly
-	/*int normOrientation = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
-
-	if (naturalOrientation == Surface.ROTATION_0)
-	{
-		// Do nothing
-	}
-	else if (naturalOrientation == Surface.ROTATION_90)
-	{
-	    orientation += 90;
-	}
-	else if (naturalOrientation == Surface.ROTATION_180)
-	{
-	    orientation += 180;
-	}
-	else if (naturalOrientation == Surface.ROTATION_270)
-	{
-	    orientation += 270;
-	}
-	*/
-	// Simpler attempt to fix orientation
+	// Attempt to fix orientation
 	if (orientation == 0 && window.width > window.height) { orientation += 90; }
 
 	// Keeps the orientation angle [0,360]
@@ -351,15 +332,15 @@ index.php
 	// Actions related to orientation
 	if (orientation == 0) {
 		// Portrait
-	  alert('portrait');
+	  //alert('portrait');
 	}
 	else if (orientation == 90) {
 		// Landscape
-	  alert('landscape');
+	  //alert('landscape');
 	}
 	else if (orientation == -90) {
 	  // Landscape
-	  alert('landscape');
+	  //alert('landscape');
 	}
 	else if (orientation == 180) {
 	  // Upside down portrait

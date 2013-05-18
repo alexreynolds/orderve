@@ -69,7 +69,7 @@ pending.php
 
 <div id="#mainwrapper">
 
-<div class="controlsmain">
+<div class="controlsmain" id="controlsmain">
 
 <h1>Pending Orders</h1>
 
