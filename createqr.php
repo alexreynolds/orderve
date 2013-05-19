@@ -105,9 +105,8 @@ createqr.php
 <fieldset>
 
 <b>Code Color</b><br />
-<span class="desc">The lighter the color, the less contrast your code will 
-	have, and the less readable it will be.<br />
-	Try to stick to darker colors.</span><br /><br />
+<span class="desc">The lighter the color, the less readable your code will be. Stick to darker colors.<br />
+	<i>If a color picker is not visible, input the hex code of the desired color.</i></span><br /><br />
 
 <input type="color" name="colordark"><br />
 

@@ -170,7 +170,7 @@ $con = mysql_connect($servername,$username,$password);
 <!-- Main page content -->
 <div class="main" id="orderinfo">
 
-<h1>Cheers <?php echo $_POST['titles'] ?>  <?php echo $_POST['lastname'] ?>!</h1><br /><br />
+<h1>Cheers <?php echo $_POST['titles'] ?>  <?php echo $_POST['lastname'] ?>!</h1><br />
 
 Stay where you are!<br />
 Your order should be coming to you soon.<br /><br />

@@ -200,10 +200,10 @@ $con = mysql_connect($servername,$username,$password);
 	*** FIX so they clear when focused on and so they are required to submit form ***
 -->
 
-<div id="userinfo">
 
 <h2>Information please!</h2>
 
+<div id="userinfo">
 <form action="placeorder.php" method="post">
 Title<br />
 <select name="titles" id="titles" onChange="getTitle()">
